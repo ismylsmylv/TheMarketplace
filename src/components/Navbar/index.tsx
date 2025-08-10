@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./style.scss";
 import {
   faBoxOpen,
-  faCartShopping,
   faHeart,
+  faPlus,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./style.scss";
 function Navbar() {
   return (
     <div className="Navbar flex items-center justify-center py-4">
@@ -26,10 +26,11 @@ function Navbar() {
             <FontAwesomeIcon icon={faHeart} />
           </button>
           <button>
-            <FontAwesomeIcon icon={faCartShopping} />
+            <FontAwesomeIcon icon={faUser} />
           </button>
           <button>
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faPlus} />
+            New promo
           </button>
         </div>
       </div>
