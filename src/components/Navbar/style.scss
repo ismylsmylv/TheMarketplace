@@ -1,9 +1,21 @@
 .Navbar {
+    border-bottom: 1px solid $border-color;
 
     // background-color: $accent-color;
     .logo {
         height: 100px;
         width: auto;
         object-fit: cover;
+    }
+
+    .actions {
+
+        button {
+            border: 1px solid $border-color;
+            border-radius: 10px;
+            height: 50px;
+            width: 50px;
+            color: $primary-color;
+        }
     }
 }

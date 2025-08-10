@@ -18,7 +18,7 @@ function Navbar() {
         <div className="searchbar">
           <input type="text" />
         </div>
-        <div className="actions">
+        <div className="actions flex items-center justify-center gap-5">
           <button>
             <FontAwesomeIcon icon={faBoxOpen} />
           </button>
