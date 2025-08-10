@@ -10,7 +10,10 @@ function Navbar() {
   return (
     <div className="Navbar flex items-center justify-center py-4">
       <div className="container   w-full flex items-center justify-between">
-        <div className="logo">logo</div>
+        <img
+          className="logo"
+          src="../../../src/assets/img/brand/logo TM transparent full.png"
+        ></img>
         <button>catalog</button>
         <div className="searchbar">
           <input type="text" />

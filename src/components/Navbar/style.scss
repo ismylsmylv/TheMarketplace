@@ -1,3 +1,9 @@
 .Navbar {
-    background-color: $accent-color;
+
+    // background-color: $accent-color;
+    .logo {
+        height: 100px;
+        width: auto;
+        object-fit: cover;
+    }
 }
