@@ -1,9 +1,4 @@
 @import "tailwindcss";
-$primary-color: #252734;
-$accent-color: #2877ee;
-$secondary-color: #fafafa;
-$background-color: #ffffff;
-
 * {
   margin: 0;
   padding: 0;
