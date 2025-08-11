@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.scss";
+import SearchBar from "../SearchBar";
 function Navbar() {
   return (
     <div className="Navbar flex items-center justify-center py-4">
@@ -15,9 +16,7 @@ function Navbar() {
           src="../../../src/assets/img/brand/logo TM transparent full.png"
         ></img>
         <button>catalog</button>
-        <div className="searchbar">
-          <input type="text" />
-        </div>
+        <SearchBar />
         <div className="actions flex items-center justify-center gap-5">
           <button>
             <FontAwesomeIcon icon={faBoxOpen} />
