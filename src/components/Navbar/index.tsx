@@ -1,4 +1,5 @@
 import {
+  faBorderAll,
   faBoxOpen,
   faHeart,
   faPlus,
@@ -15,7 +16,10 @@ function Navbar() {
           className="logo"
           src="../../../src/assets/img/brand/logo TM transparent full.png"
         ></img>
-        <button>catalog</button>
+        <button className="catalogBtn rounded-lg capitalize px-10 py-3 flex items-center justify-center gap-3">
+          <FontAwesomeIcon icon={faBorderAll} color="#fff" />
+          <b className="text-white ">catalog</b>
+        </button>
         <SearchBar />
         <div className="actions flex items-center justify-center gap-5">
           <button>
