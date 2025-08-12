@@ -11,3 +11,7 @@ select,
 input {
   outline: none;
 }
+
+.container {
+  margin: 0 auto;
+}
