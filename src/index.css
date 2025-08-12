@@ -6,3 +6,8 @@
 button {
   cursor: pointer;
 }
+
+select,
+input {
+  outline: none;
+}
