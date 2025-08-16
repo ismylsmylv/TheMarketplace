@@ -21,8 +21,13 @@ function GalleryCarousel({}: Props) {
           <img
             src={img}
             alt=""
-            className="smallImg rounded"
+            className={`smallImg rounded-lg cursor-pointer ${
+              active == img ? "active" : ""
+            }`}
             onClick={() => {
+              setActive(img);
+            }}
+            onMouseEnter={() => {
               setActive(img);
             }}
           />
