@@ -15,10 +15,17 @@ function GalleryCarousel({}: Props) {
 
   return (
     <div className="GalleryCarousel w-full">
-      <img src={active} alt="" className="bigImg rounded mb-3" />
+      <img src={active} alt="" className="bigImg rounded mb-3 w-full" />
       <div className="list flex items-center justify-start gap-3">
         {images.map((img) => (
-          <img src={img} alt="" className="smallImg rounded" />
+          <img
+            src={img}
+            alt=""
+            className="smallImg rounded"
+            onClick={() => {
+              setActive(img);
+            }}
+          />
         ))}
       </div>
     </div>

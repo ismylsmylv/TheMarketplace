@@ -1,6 +1,10 @@
 .GalleryCarousel {
 
-    .bigImg {}
+    .bigImg {
+        object-fit: cover;
+        width: 80vw;
+        height: 600px;
+    }
 
     .smallImg {
         width: 100px;
