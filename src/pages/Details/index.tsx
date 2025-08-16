@@ -4,6 +4,7 @@ import {
   faHeart,
   faTriangleExclamation
 } from "@fortawesome/free-solid-svg-icons";
+import GalleryCarousel from "../../components/GalleryCarousel";
 function Details() {
   return (
     <div className="Details container p-4">
@@ -20,8 +21,10 @@ function Details() {
           </button>
         </div>
       </section>
-      <section className="mt-5">
-        <div className="gallery"></div>
+      <section className="mt-5 flex items-start justify-center gap-10">
+        <div className="gallery">
+          <GalleryCarousel />
+        </div>
         <div className="info rounded p-5">
           <div className="price text-3xl font-bold mb-6 pb-4">1500 AZN</div>
           <div className="flex items-center justify-start">
