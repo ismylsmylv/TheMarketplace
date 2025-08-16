@@ -3,14 +3,14 @@ import {
   faBoxOpen,
   faHeart,
   faPlus,
-  faUser,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.scss";
 import SearchBar from "../SearchBar";
 function Navbar() {
   return (
-    <div className="Navbar flex items-center justify-center py-4">
+    <div className="Navbar flex items-center justify-center p-4">
       <div className="container   w-full flex items-center justify-between">
         <img
           className="logo"
