@@ -1,0 +1,21 @@
+.Details {
+    .topLine {
+        .actions {
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: oklch(55.1% 0.027 264.364);
+
+                &:hover {
+
+                    p,
+                    svg {
+                        color: $accent-color;
+                    }
+                }
+            }
+        }
+    }
+}
