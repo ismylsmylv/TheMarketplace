@@ -18,4 +18,23 @@
             }
         }
     }
+
+    .info {
+        border: 1px solid $border-color;
+        max-width: 400px;
+
+        .price {
+            border-bottom: 1px solid $border-color;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            object-position: center;
+            margin-right: 10px;
+        }
+    }
+
 }
