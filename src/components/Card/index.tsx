@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import "./style.scss";
-type Props = {};
-function Card({}: Props) {
+function Card() {
   return (
     <Link
       to={"/details/1"}

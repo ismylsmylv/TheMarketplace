@@ -1,40 +1,38 @@
-import {
-  faBorderAll,
-  faBoxOpen,
-  faHeart,
-  faPlus,
-  faUser
-} from "@fortawesome/free-solid-svg-icons";
+import { faBorderAll, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./style.scss";
+import { Link } from "react-router";
 import SearchBar from "../SearchBar";
+import { navs } from "./navs";
+import "./style.scss";
 function Navbar() {
   return (
     <div className="Navbar flex items-center justify-center p-4">
       <div className="container   w-full flex items-center justify-between">
-        <img
-          className="logo"
-          src="../../../src/assets/img/brand/logo TM transparent full.png"
-        ></img>
+        <Link to={"/"}>
+          <img
+            className="logo"
+            src="../../../src/assets/img/brand/logo TM transparent full.png"
+          ></img>
+        </Link>
         <button className="catalogBtn rounded-lg capitalize px-10 py-3 flex items-center justify-center gap-3">
           <FontAwesomeIcon icon={faBorderAll} color="#fff" />
           <b className="text-white ">catalog</b>
         </button>
         <SearchBar />
         <div className="actions flex items-center justify-center gap-5">
-          <button>
-            <FontAwesomeIcon icon={faBoxOpen} />
-          </button>
-          <button>
-            <FontAwesomeIcon icon={faHeart} />
-          </button>
-          <button>
-            <FontAwesomeIcon icon={faUser} />
-          </button>
-          <button>
+          {navs.map((nav) => (
+            <Link
+              to={nav.url}
+              className="flex items-center justify-center"
+              key={nav.url}
+            >
+              <FontAwesomeIcon icon={nav.icon} />
+            </Link>
+          ))}
+          <Link to={"/new"}>
             <FontAwesomeIcon icon={faPlus} />
             New promo
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-function Details({}: Props) {
+function Details() {
   return <div>Details</div>;
 }
 
