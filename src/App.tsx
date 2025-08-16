@@ -1,11 +1,12 @@
-import CardGrid from "./components/CardGrid";
+import { Outlet } from "react-router";
 import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
       <Navbar />
-      <CardGrid />
+
+      <Outlet />
     </>
   );
 }
