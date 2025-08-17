@@ -1,10 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./style.scss";
 import {
   faHeart,
-  faTriangleExclamation
+  faPhone,
+  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GalleryCarousel from "../../components/GalleryCarousel";
+import "./style.scss";
 function Details() {
   return (
     <div className="Details container p-4">
@@ -26,7 +27,9 @@ function Details() {
           <GalleryCarousel />
         </div>
         <div className="info rounded p-5">
-          <div className="price text-3xl font-bold mb-6 pb-4">1500 AZN</div>
+          <div className="financial">
+            <div className="price text-3xl font-bold mb-6 pb-4">1500 AZN</div>
+          </div>
           <div className="flex items-center justify-start">
             <img
               src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
@@ -38,6 +41,19 @@ function Details() {
               <div className="rate text-xs">90% success rate</div>
             </div>
           </div>
+          <div className="contacts">
+            <a
+              href="tel:+123456789"
+              className="phone flex items-center justify-center gap-3 my-4 rounded text-white py-4 font-bold"
+            >
+              <FontAwesomeIcon icon={faPhone} />
+              +123456789
+            </a>
+          </div>
+          {/* should open modal with new price and textarea */}
+          <button className="offer flex items-center justify-center gap-3 my-4 rounded  py-4 font-bold w-full">
+            Make an offer
+          </button>
         </div>
       </section>
     </div>

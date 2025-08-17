@@ -38,4 +38,19 @@
         }
     }
 
+    .contacts {
+        .phone {
+            background-color: $action-color;
+        }
+    }
+
+    .offer {
+        border: 1px solid $accent-color;
+        transition: 100ms linear;
+
+        &:hover {
+            background-color: $accent-color;
+            color: #fff;
+        }
+    }
 }
