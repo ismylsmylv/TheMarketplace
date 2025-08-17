@@ -58,4 +58,10 @@
     .detailsList {
         width: 70%;
     }
+
+    .description {
+        width: 70%;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+    }
 }

@@ -20,3 +20,5 @@ export const detailsList = [
     value: "barter",
   },
 ];
+
+export const detailsPosted = ["id", "date", "views"];
