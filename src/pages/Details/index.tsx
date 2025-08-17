@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import "./style.scss";
+import { detailsList } from "./mockdata";
 function Details() {
   return (
     <div className="Details container p-4">
@@ -55,6 +56,18 @@ function Details() {
             Make an offer
           </button>
         </div>
+      </section>
+      <section>
+        <ul className="detailsList grid grid-cols-2 gap-2 mt-6">
+          {detailsList.map((item) => (
+            <li className="flex items-center justify-between my-1">
+              <div className="title text-gray-400 font-semibold">
+                {item.title}
+              </div>
+              <div className="value">{item.value}</div>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );
