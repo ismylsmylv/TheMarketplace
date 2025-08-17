@@ -5,6 +5,7 @@ function Card() {
     <Link
       to={"/details/1"}
       className="Card rounded-lg cursor-pointer overflow-hidden"
+      target="_blank"
     >
       <img
         src="https://laptopmedia.com/wp-content/uploads/2023/12/10-5.jpg"
