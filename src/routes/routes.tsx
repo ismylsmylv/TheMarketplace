@@ -5,7 +5,7 @@ import Details from "../pages/Details";
 import Favorites from "../pages/Favorites";
 import Profile from "../pages/Profile";
 import Promos from "../pages/Promos";
-import NewPromo from "../pages/NewPromo";
+import NewPoster from "../pages/NewPoster";
 
 export const router = createBrowserRouter([
   {
@@ -14,28 +14,28 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/details/:id",
-        element: <Details />
+        element: <Details />,
       },
       {
         path: "/favorites",
-        element: <Favorites />
+        element: <Favorites />,
       },
       {
         path: "/profile",
-        element: <Profile />
+        element: <Profile />,
       },
       {
         path: "/promos",
-        element: <Promos />
+        element: <Promos />,
       },
       {
         path: "/new",
-        element: <NewPromo />
-      }
-    ]
-  }
+        element: <NewPoster />,
+      },
+    ],
+  },
 ]);

@@ -29,9 +29,9 @@ function Navbar() {
               <FontAwesomeIcon icon={nav.icon} />
             </Link>
           ))}
-          <Link to={"/new"}>
+          <Link to={"/new"} className="flex items-center justify-center">
             <FontAwesomeIcon icon={faPlus} />
-            New promo
+            New poster
           </Link>
         </div>
       </div>
