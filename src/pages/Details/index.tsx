@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import "./style.scss";
 import { detailsList, detailsPosted } from "./mockdata";
+import CardGrid from "../../components/CardGrid";
 function Details() {
   return (
     <div className="Details container p-4">
@@ -88,6 +89,7 @@ function Details() {
           ))}
         </div>
       </section>
+      <CardGrid heading={{ title: "More like this", url: "/" }} />
     </div>
   );
 }
