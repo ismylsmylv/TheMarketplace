@@ -1,3 +1,4 @@
+import { fields } from "./mockdata";
 import "./style.scss";
 import { useForm } from "@tanstack/react-form";
 
@@ -34,50 +35,46 @@ function NewPoster() {
           form.handleSubmit();
         }}
       >
-        <form.Field
-          name="category"
-          validators={{
-            onChange: ({ value }) =>
-              value > 13 ? undefined : "Must be 13 or older",
-          }}
-        >
-          {(field) => (
-            <>
-              <input
-                name={field.name}
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                type="number"
-                onChange={(e) => field.handleChange(e.target.valueAsNumber)}
-              />
-              {!field.state.meta.isValid && (
-                <em>{field.state.meta.errors.join(", ")}</em>
-              )}
-            </>
-          )}
-        </form.Field>
-        <form.Field
-          name="brand"
-          validators={{
-            onChange: ({ value }) =>
-              value != "" ? undefined : "Must be 13 or older",
-          }}
-        >
-          {(field) => (
-            <>
-              <input
-                name={field.name}
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                type="number"
-                onChange={(e) => field.handleChange(e.target.valueAsNumber)}
-              />
-              {!field.state.meta.isValid && (
-                <em>{field.state.meta.errors.join(", ")}</em>
-              )}
-            </>
-          )}
-        </form.Field>
+        {fields.map((item) => (
+          <form.Field
+            name={
+              item.value as
+                | "category"
+                | "brand"
+                | "postername"
+                | "condition"
+                | "delivery"
+                | "city"
+                | "price"
+                | "barter"
+                | "description"
+                | "name"
+                | "email"
+                | "phone"
+            }
+            validators={{
+              onChange: ({ value }) =>
+                value !== "" ? undefined : `${item.title} is required`,
+            }}
+          >
+            {(field) => (
+              <>
+                <input
+                  name={field.name}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  type={item.type}
+                  placeholder={item.title}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em>{field.state.meta.errors.join(", ")}</em>
+                )}
+              </>
+            )}
+          </form.Field>
+        ))}
+
         <button type="submit">Post</button>
       </form>
     </div>
