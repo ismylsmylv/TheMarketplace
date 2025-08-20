@@ -1,5 +1,8 @@
 export const fields = [
   {
+    title: "about product",
+  },
+  {
     title: "category",
     value: "category",
     type: "text",
@@ -20,8 +23,16 @@ export const fields = [
     type: "text",
   },
   {
-    title: "delivery",
-    value: "delivery",
+    title: "description",
+    value: "description",
+    type: "text",
+  },
+  {
+    title: "dealing",
+  },
+  {
+    title: "price",
+    value: "price",
     type: "text",
   },
   {
@@ -30,8 +41,8 @@ export const fields = [
     type: "text",
   },
   {
-    title: "price",
-    value: "price",
+    title: "delivery",
+    value: "delivery",
     type: "text",
   },
   {
@@ -40,9 +51,7 @@ export const fields = [
     type: "text",
   },
   {
-    title: "description",
-    value: "description",
-    type: "text",
+    title: "your info",
   },
   {
     title: "name",

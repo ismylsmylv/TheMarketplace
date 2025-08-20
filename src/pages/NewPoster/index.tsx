@@ -23,12 +23,11 @@ function NewPoster() {
     },
   });
 
+  const headings = ["about product", "dealing", "your info"];
+
   return (
     <div className="NewPoster rounded p-5 container">
       <h1>New poster</h1>
-      <section>category brand postername condition delivery</section>
-      <section>city price barter</section> <section> description</section>
-      <section>name email phone</section>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -36,43 +35,51 @@ function NewPoster() {
         }}
       >
         {fields.map((item) => (
-          <form.Field
-            name={
-              item.value as
-                | "category"
-                | "brand"
-                | "postername"
-                | "condition"
-                | "delivery"
-                | "city"
-                | "price"
-                | "barter"
-                | "description"
-                | "name"
-                | "email"
-                | "phone"
-            }
-            validators={{
-              onChange: ({ value }) =>
-                value !== "" ? undefined : `${item.title} is required`,
-            }}
-          >
-            {(field) => (
-              <>
-                <input
-                  name={field.name}
-                  value={field.state.value}
-                  onBlur={field.handleBlur}
-                  type={item.type}
-                  placeholder={item.title}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-                {!field.state.meta.isValid && (
-                  <em>{field.state.meta.errors.join(", ")}</em>
+          <section>
+            {headings.find((element) => element == item.title) ? (
+              <h1>{item.title}</h1>
+            ) : (
+              <form.Field
+                name={
+                  item.value as
+                    | "category"
+                    | "brand"
+                    | "postername"
+                    | "condition"
+                    | "delivery"
+                    | "city"
+                    | "price"
+                    | "barter"
+                    | "description"
+                    | "name"
+                    | "email"
+                    | "phone"
+                }
+                validators={{
+                  onChange: ({ value }) =>
+                    value !== "" ? undefined : `${item.title} is required`,
+                }}
+              >
+                {(field) => (
+                  <>
+                    <div key={item.title}>
+                      <input
+                        name={field.name}
+                        value={field.state.value}
+                        onBlur={field.handleBlur}
+                        type={item.type}
+                        placeholder={item.title}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                      />
+                      {!field.state.meta.isValid && (
+                        <em>{field.state.meta.errors.join(", ")}</em>
+                      )}
+                    </div>
+                  </>
                 )}
-              </>
+              </form.Field>
             )}
-          </form.Field>
+          </section>
         ))}
 
         <button type="submit">Post</button>
