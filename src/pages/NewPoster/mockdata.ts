@@ -13,7 +13,7 @@ export const fields = [
     type: "text",
   },
   {
-    title: "postername",
+    title: "poster name",
     value: "postername",
     type: "text",
   },
@@ -42,7 +42,7 @@ export const fields = [
   },
   {
     title: "delivery",
-    value: "delivery",
+    value: "delivery type",
     type: "text",
   },
   {
@@ -55,17 +55,17 @@ export const fields = [
   },
   {
     title: "name",
-    value: "name",
+    value: "your name",
     type: "text",
   },
   {
     title: "email",
-    value: "email",
+    value: "email address",
     type: "text",
   },
   {
     title: "phone",
-    value: "phone",
+    value: "phone number",
     type: "text",
   },
 ];

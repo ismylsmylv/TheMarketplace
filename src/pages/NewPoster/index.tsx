@@ -32,57 +32,65 @@ function NewPoster() {
           form.handleSubmit();
         }}
       >
-        {headings.map((section) => {
-          return fields.slice(section.start, section.end).map((item) => {
-            return (
-              <section>
-                {headings.find((element) => element.title == item.title) ? (
-                  <h1>{item.title}</h1>
-                ) : (
-                  <form.Field
-                    name={
-                      item.value as
-                        | "category"
-                        | "brand"
-                        | "postername"
-                        | "condition"
-                        | "delivery"
-                        | "city"
-                        | "price"
-                        | "barter"
-                        | "description"
-                        | "name"
-                        | "email"
-                        | "phone"
-                    }
-                    validators={{
-                      onChange: ({ value }) =>
-                        value !== "" ? undefined : `${item.title} is required`,
-                    }}
-                  >
-                    {(field) => (
-                      <>
-                        <div key={item.title}>
-                          <input
-                            name={field.name}
-                            value={field.state.value}
-                            onBlur={field.handleBlur}
-                            type={item.type}
-                            placeholder={item.title}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                          />
-                          {!field.state.meta.isValid && (
-                            <em>{field.state.meta.errors.join(", ")}</em>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </form.Field>
-                )}
-              </section>
-            );
-          });
-        })}
+        {headings.map((section) => (
+          <section className="rounded-lg p-5 mb-4">
+            {fields.slice(section.start, section.end).map((item) => {
+              return (
+                <>
+                  {headings.find((element) => element.title == item.title) ? (
+                    <h1 className="font-bold text-2xl capitalize ">
+                      {item.title}
+                    </h1>
+                  ) : (
+                    <form.Field
+                      name={
+                        item.value as
+                          | "category"
+                          | "brand"
+                          | "postername"
+                          | "condition"
+                          | "delivery"
+                          | "city"
+                          | "price"
+                          | "barter"
+                          | "description"
+                          | "name"
+                          | "email"
+                          | "phone"
+                      }
+                      validators={{
+                        onChange: ({ value }) =>
+                          value !== ""
+                            ? undefined
+                            : `${item.title} is required`,
+                      }}
+                    >
+                      {(field) => (
+                        <>
+                          <div key={item.title}>
+                            <input
+                              name={field.name}
+                              value={field.state.value}
+                              onBlur={field.handleBlur}
+                              type={item.type}
+                              placeholder={item.title}
+                              onChange={(e) =>
+                                field.handleChange(e.target.value)
+                              }
+                            />
+                            {!field.state.meta.isValid && (
+                              <em>{field.state.meta.errors.join(", ")}</em>
+                            )}
+                          </div>
+                        </>
+                      )}
+                    </form.Field>
+                  )}
+                </>
+              );
+            })}
+          </section>
+        ))}
 
         <button type="submit">Post</button>
       </form>
