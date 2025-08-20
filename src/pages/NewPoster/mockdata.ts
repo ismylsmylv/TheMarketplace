@@ -69,3 +69,21 @@ export const fields = [
     type: "text",
   },
 ];
+
+export const headings = [
+  {
+    title: "about product",
+    start: 0,
+    end: 6,
+  },
+  {
+    title: "dealing",
+    start: 6,
+    end: 11,
+  },
+  {
+    title: "your info",
+    start: 11,
+    end: 16,
+  },
+];

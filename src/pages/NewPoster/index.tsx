@@ -1,4 +1,4 @@
-import { fields } from "./mockdata";
+import { fields, headings } from "./mockdata";
 import "./style.scss";
 import { useForm } from "@tanstack/react-form";
 
@@ -23,8 +23,6 @@ function NewPoster() {
     },
   });
 
-  const headings = ["about product", "dealing", "your info"];
-
   return (
     <div className="NewPoster rounded p-5 container">
       <h1>New poster</h1>
@@ -34,53 +32,57 @@ function NewPoster() {
           form.handleSubmit();
         }}
       >
-        {fields.map((item) => (
-          <section>
-            {headings.find((element) => element == item.title) ? (
-              <h1>{item.title}</h1>
-            ) : (
-              <form.Field
-                name={
-                  item.value as
-                    | "category"
-                    | "brand"
-                    | "postername"
-                    | "condition"
-                    | "delivery"
-                    | "city"
-                    | "price"
-                    | "barter"
-                    | "description"
-                    | "name"
-                    | "email"
-                    | "phone"
-                }
-                validators={{
-                  onChange: ({ value }) =>
-                    value !== "" ? undefined : `${item.title} is required`,
-                }}
-              >
-                {(field) => (
-                  <>
-                    <div key={item.title}>
-                      <input
-                        name={field.name}
-                        value={field.state.value}
-                        onBlur={field.handleBlur}
-                        type={item.type}
-                        placeholder={item.title}
-                        onChange={(e) => field.handleChange(e.target.value)}
-                      />
-                      {!field.state.meta.isValid && (
-                        <em>{field.state.meta.errors.join(", ")}</em>
-                      )}
-                    </div>
-                  </>
+        {headings.map((section) => {
+          return fields.slice(section.start, section.end).map((item) => {
+            return (
+              <section>
+                {headings.find((element) => element.title == item.title) ? (
+                  <h1>{item.title}</h1>
+                ) : (
+                  <form.Field
+                    name={
+                      item.value as
+                        | "category"
+                        | "brand"
+                        | "postername"
+                        | "condition"
+                        | "delivery"
+                        | "city"
+                        | "price"
+                        | "barter"
+                        | "description"
+                        | "name"
+                        | "email"
+                        | "phone"
+                    }
+                    validators={{
+                      onChange: ({ value }) =>
+                        value !== "" ? undefined : `${item.title} is required`,
+                    }}
+                  >
+                    {(field) => (
+                      <>
+                        <div key={item.title}>
+                          <input
+                            name={field.name}
+                            value={field.state.value}
+                            onBlur={field.handleBlur}
+                            type={item.type}
+                            placeholder={item.title}
+                            onChange={(e) => field.handleChange(e.target.value)}
+                          />
+                          {!field.state.meta.isValid && (
+                            <em>{field.state.meta.errors.join(", ")}</em>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </form.Field>
                 )}
-              </form.Field>
-            )}
-          </section>
-        ))}
+              </section>
+            );
+          });
+        })}
 
         <button type="submit">Post</button>
       </form>
