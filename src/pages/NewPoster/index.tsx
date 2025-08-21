@@ -24,21 +24,22 @@ function NewPoster() {
   });
 
   return (
-    <div className="NewPoster rounded p-5 container">
-      <h1>New poster</h1>
+    <div className="NewPoster rounded p-5 container flex items-center justify-center flex-col ">
+      <h1 className="text-2xl mb-5">Share new poster</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
         }}
+        className="flex item-center justify-center flex-col max-w-lg w-full"
       >
         {headings.map((section) => (
-          <section className="rounded-lg p-5 mb-4">
+          <section className="rounded-lg p-5 mb-4 flex item-center justify-center flex-col w-full">
             {fields.slice(section.start, section.end).map((item) => {
               return (
                 <>
                   {headings.find((element) => element.title == item.title) ? (
-                    <h1 className="font-bold text-2xl capitalize ">
+                    <h1 className="font-semibold text-xl capitalize text-center mb-4">
                       {item.title}
                     </h1>
                   ) : (
@@ -78,6 +79,7 @@ function NewPoster() {
                                 field.handleChange(e.target.value)
                               }
                             />
+                            <br />
                             {!field.state.meta.isValid && (
                               <em>{field.state.meta.errors.join(", ")}</em>
                             )}
@@ -92,7 +94,13 @@ function NewPoster() {
           </section>
         ))}
 
-        <button type="submit">Post</button>
+        <div className="warn font-light text-center mb-6 mt-6">
+          By sharing a poster, you confirm that you agree with TheMarketplace's
+          User Agreement & Privacy Policy.
+        </div>
+        <button className="py-3 px-6  w-fit self-center rounded" type="submit">
+          Post
+        </button>
       </form>
     </div>
   );
