@@ -4,9 +4,14 @@ import { Link } from "react-router";
 import SearchBar from "../SearchBar";
 import { navs } from "./navs";
 import "./style.scss";
+import { useState } from "react";
+import Catalog from "../Catalog";
 function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="Navbar flex items-center justify-center p-4">
+      <Catalog isOpen={open} setOpen={setOpen} />
       <div className="container   w-full flex items-center justify-between">
         <Link to={"/"}>
           <img
@@ -14,7 +19,18 @@ function Navbar() {
             src="../../../src/assets/img/brand/logo TM transparent full.png"
           ></img>
         </Link>
-        <button className="catalogBtn rounded-lg capitalize px-10 py-3 flex items-center justify-center gap-3">
+        <button
+          className="catalogBtn rounded-lg capitalize px-10 py-3 flex items-center justify-center gap-3"
+          onMouseEnter={() => {
+            setOpen(true);
+          }}
+          onMouseLeave={() => {
+            setOpen(true);
+          }}
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
           <FontAwesomeIcon icon={faBorderAll} color="#fff" />
           <b className="text-white ">catalog</b>
         </button>
