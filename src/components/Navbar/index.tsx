@@ -4,14 +4,13 @@ import { Link } from "react-router";
 import SearchBar from "../SearchBar";
 import { navs } from "./navs";
 import "./style.scss";
-import { useState } from "react";
-import Catalog from "../Catalog";
-function Navbar() {
-  const [open, setOpen] = useState(false);
-
+type Props = {
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+function Navbar({ isOpen, setOpen }: Props) {
   return (
     <div className="Navbar flex items-center justify-center p-4">
-      <Catalog isOpen={open} setOpen={setOpen} />
       <div className="container   w-full flex items-center justify-between">
         <Link to={"/"}>
           <img
@@ -25,10 +24,10 @@ function Navbar() {
             setOpen(true);
           }}
           onMouseLeave={() => {
-            setOpen(true);
+            setOpen(false);
           }}
           onClick={() => {
-            setOpen(true);
+            setOpen(!isOpen);
           }}
         >
           <FontAwesomeIcon icon={faBorderAll} color="#fff" />

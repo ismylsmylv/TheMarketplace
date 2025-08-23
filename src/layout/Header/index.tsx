@@ -1,0 +1,16 @@
+import { useState } from "react";
+import Catalog from "../../components/Catalog";
+import Navbar from "../../components/Navbar";
+
+function Header() {
+  const [open, setOpen] = useState<boolean>(false);
+
+  return (
+    <div className="Header">
+      <Navbar isOpen={open} setOpen={setOpen} />
+      {open && <Catalog isOpen={open} setOpen={setOpen} />}
+    </div>
+  );
+}
+
+export default Header;
