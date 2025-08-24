@@ -18,7 +18,7 @@ function Catalog({ setOpen }: Props) {
 
   return (
     <div
-      className="Catalog rounded p-4 m-4 w-full"
+      className="Catalog rounded p-4 m-4 w-full  left-auto right-auto"
       onMouseLeave={() => {
         setActiveType("products");
         setOpen(false);
@@ -29,8 +29,8 @@ function Catalog({ setOpen }: Props) {
         {types.map((item) => (
           <div
             key={item.type}
-            className={`item px-4 py-2 cursor-pointer ${
-              activeType === item.type ? "font-bold underline" : ""
+            className={`item px-4 py-2 cursor-pointer font-bold ${
+              activeType === item.type ? " activeType " : ""
             }`}
             onMouseEnter={() => setActiveType(item.type)}
           >

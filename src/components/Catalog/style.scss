@@ -8,10 +8,13 @@
     max-width: 60vw;
     margin: 0 auto;
     height: 80vh;
+    transition: 200ms linear;
 
     .subcategory {
-        &:hover {
-            color: $accent-color;
-        }
+        &:hover {}
+    }
+
+    .activeType {
+        color: $accent-color;
     }
 }

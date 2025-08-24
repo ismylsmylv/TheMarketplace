@@ -1,4 +1,8 @@
-import { faBorderAll, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBorderAll,
+  faPlus,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router";
 import SearchBar from "../SearchBar";
@@ -24,7 +28,11 @@ function Navbar({ isOpen, setOpen }: Props) {
             setOpen(!isOpen);
           }}
         >
-          <FontAwesomeIcon icon={faBorderAll} color="#fff" />
+          {isOpen ? (
+            <FontAwesomeIcon icon={faXmark} color="#fff" />
+          ) : (
+            <FontAwesomeIcon icon={faBorderAll} color="#fff" />
+          )}
           <b className="text-white ">catalog</b>
         </button>
         <SearchBar />
