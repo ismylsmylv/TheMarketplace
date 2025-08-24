@@ -1,9 +1,13 @@
 .Catalog {
     z-index: 999;
     border: 1px solid $border-color;
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     background-color: $background-color;
     max-width: 60vw;
-    margin: 10px auto;
+    margin: 0 auto;
+    height: 80vh;
 
     .subcategory {
         &:hover {
