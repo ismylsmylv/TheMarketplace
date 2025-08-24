@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router";
 import SearchBar from "../SearchBar";
 import { navs } from "./navs";
+import BrandLogo from "../../../public/brand/logo TM transparent full.png";
 import "./style.scss";
 type Props = {
   isOpen: boolean;
@@ -17,10 +18,7 @@ function Navbar({ isOpen, setOpen }: Props) {
     <div className="Navbar flex items-center justify-center px-4 ">
       <div className="container   w-full flex items-center justify-between">
         <Link to={"/"}>
-          <img
-            className="logo"
-            src="../../../public/brand/logo TM transparent full.png"
-          ></img>
+          <img className="logo" src={BrandLogo}></img>
         </Link>
         <button
           className="catalogBtn rounded-lg capitalize px-10 py-3 flex items-center justify-center gap-3"
