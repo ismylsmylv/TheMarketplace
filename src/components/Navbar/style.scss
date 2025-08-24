@@ -1,28 +1,350 @@
+// Enhanced Responsive Navbar Styles
 .Navbar {
     border-bottom: 1px solid $border-color;
     background-color: $background-color;
-    z-index: 10;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+    width: 100%;
 
-    // background-color: $accent-color;
-    .logo {
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: auto auto 1fr auto auto;
+        grid-template-areas: "logo catalog search actions mobile";
+        align-items: center;
+        gap: 1rem;
         height: 80px;
-        width: auto;
-        object-fit: cover;
-    }
 
-    .actions {
-
-        a {
-            border: 1px solid $border-color;
-            border-radius: 10px;
-            height: 50px;
-            min-width: 50px;
-            padding: 10px;
-            color: $primary-color;
+        @media (min-width: 1400px) {
+            max-width: 1400px;
+            padding: 0 2rem;
         }
     }
 
-    .catalogBtn {
-        background-color: $accent-color;
+    // Logo Section
+    .logo-section {
+        grid-area: logo;
+
+        .logo-link {
+            display: block;
+
+            .logo {
+                height: 80px !important;
+                width: auto;
+                object-fit: contain;
+                transition: opacity 0.2s ease;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    // Catalog Button Section
+    .catalog-section {
+        grid-area: catalog;
+
+        .catalogBtn {
+            background-color: $accent-color;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 48px;
+
+            &:hover {
+                opacity: 0.9;
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+
+            .catalog-icon {
+                color: white;
+                font-size: 16px;
+            }
+
+            .catalog-text {
+                color: white;
+                font-weight: 600;
+                text-transform: capitalize;
+                font-size: 14px;
+            }
+        }
+    }
+
+    // Search Section
+    .search-section {
+        grid-area: search;
+        justify-self: center;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    // Actions Section
+    .actions-section {
+        grid-area: actions;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .nav-action-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid $border-color;
+                border-radius: 8px;
+                height: 48px;
+                min-width: 48px;
+                padding: 12px;
+                color: $primary-color;
+                text-decoration: none;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background-color: rgba($primary-color, 0.1);
+                    border-color: $primary-color;
+                }
+            }
+        }
+
+        .new-poster-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid $border-color;
+            border-radius: 8px;
+            height: 48px;
+            padding: 12px 16px;
+            color: $primary-color;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+
+            &:hover {
+                background-color: rgba($primary-color, 0.1);
+                border-color: $primary-color;
+            }
+
+            .new-poster-text {
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    // Mobile Menu Section
+    .mobile-menu-section {
+        grid-area: mobile;
+        display: none;
+
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid $border-color;
+            border-radius: 8px;
+            height: 48px;
+            min-width: 48px;
+            padding: 12px;
+            color: $primary-color;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: rgba($primary-color, 0.1);
+                border-color: $primary-color;
+            }
+        }
+    }
+}
+
+// Responsive Breakpoints
+// Large screens (1400px+) - Full layout
+@media (min-width: 1400px) {
+    .Navbar .navbar-container {
+        gap: 2rem;
+    }
+}
+
+// Medium-large screens (1200px - 1399px) - Reduce spacing
+@media (max-width: 1399px) {
+    .Navbar {
+        .actions-section {
+            .new-poster-link .new-poster-text {
+                display: none;
+            }
+        }
+    }
+}
+
+// Medium screens (900px - 1199px) - Hide some nav actions, show mobile menu
+@media (max-width: 1199px) {
+    .Navbar .navbar-container {
+        grid-template-columns: auto auto 1fr auto;
+        grid-template-areas: "logo catalog search mobile";
+
+        .actions-section {
+            display: none;
+        }
+
+        .mobile-menu-section {
+            display: block;
+        }
+    }
+}
+
+// Small-medium screens (768px - 899px) - Adjust search width and catalog button
+@media (max-width: 899px) {
+    .Navbar {
+        .logo {
+            height: 60px;
+        }
+
+        .navbar-container {
+            gap: 0.75rem;
+        }
+
+        .logo-section .logo {
+            height: 50px;
+        }
+
+        .catalog-section .catalogBtn {
+            padding: 12px 16px;
+
+            .catalog-text {
+                display: none;
+            }
+        }
+
+        .search-section {
+            max-width: 300px;
+        }
+    }
+}
+
+// Small screens (480px - 767px) - Compact layout
+@media (max-width: 767px) {
+    .Navbar {
+
+        .navbar-container {
+            grid-template-columns: auto auto 1fr auto;
+            gap: 0.5rem;
+        }
+
+        .logo-section .logo {
+            height: 40px;
+        }
+
+        .catalog-section .catalogBtn {
+            padding: 10px 12px;
+            min-height: 40px;
+
+            .catalog-icon {
+                font-size: 14px;
+            }
+        }
+
+        .search-section {
+            max-width: 250px;
+        }
+
+        .mobile-menu-section .mobile-menu-btn {
+            height: 40px;
+            min-width: 40px;
+            padding: 10px;
+        }
+    }
+}
+
+// Extra small screens (320px - 479px) - Minimal layout
+@media (max-width: 479px) {
+    .Navbar {
+        .navbar-container {
+            grid-template-columns: auto 1fr auto auto;
+            grid-template-areas: "logo search catalog mobile";
+            gap: 0.25rem;
+        }
+
+        .logo-section .logo {
+            height: 36px;
+        }
+
+        .catalog-section .catalogBtn {
+            padding: 8px 10px;
+            min-height: 36px;
+            border-radius: 6px;
+        }
+
+        .search-section {
+            max-width: none;
+            margin: 0 0.5rem;
+        }
+
+        .mobile-menu-section .mobile-menu-btn {
+            height: 36px;
+            min-width: 36px;
+            padding: 8px;
+            border-radius: 6px;
+        }
+    }
+}
+
+// Print styles
+@media print {
+    .Navbar {
+        display: none;
+    }
+}
+
+
+// Expanded Search Container (Mobile)
+.expanded-search-container {
+    position: sticky;
+    top: 80px;
+    background-color: $background-color;
+    border-bottom: 1px solid $border-color;
+    z-index: 999;
+    animation: slideDown 0.3s ease-out;
+
+    .expanded-search-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+
+        @media (min-width: 1400px) {
+            max-width: 1400px;
+            padding: 1rem 2rem;
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

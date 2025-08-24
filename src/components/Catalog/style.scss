@@ -10,8 +10,12 @@
     height: 80vh;
     transition: 200ms linear;
 
-    .subcategory {
-        &:hover {}
+    li {
+        &:hover {
+            a {
+                color: $accent-color
+            }
+        }
     }
 
     .activeType {
