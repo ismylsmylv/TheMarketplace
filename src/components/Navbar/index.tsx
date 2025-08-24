@@ -10,7 +10,7 @@ type Props = {
 };
 function Navbar({ isOpen, setOpen }: Props) {
   return (
-    <div className="Navbar flex items-center justify-center p-4">
+    <div className="Navbar flex items-center justify-center px-4 ">
       <div className="container   w-full flex items-center justify-between">
         <Link to={"/"}>
           <img

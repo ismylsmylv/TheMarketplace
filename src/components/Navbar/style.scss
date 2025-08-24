@@ -1,14 +1,11 @@
 .Navbar {
     border-bottom: 1px solid $border-color;
-    position: sticky;
-    top: 0;
-    left: 0;
     background-color: $background-color;
     z-index: 10;
 
     // background-color: $accent-color;
     .logo {
-        height: 100px;
+        height: 80px;
         width: auto;
         object-fit: cover;
     }
