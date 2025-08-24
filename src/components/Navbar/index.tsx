@@ -106,7 +106,7 @@ function Navbar({ isOpen, setOpen }: Props) {
                   to={nav.url}
                   className="nav-action-link"
                   key={nav.url}
-                  aria-label={nav.label || nav.url}
+                  aria-label={nav.url}
                 >
                   <FontAwesomeIcon icon={nav.icon} />
                 </Link>
