@@ -19,7 +19,7 @@ function Navbar({ isOpen, setOpen }: Props) {
         <Link to={"/"}>
           <img
             className="logo"
-            src="../../../src/assets/img/brand/logo TM transparent full.png"
+            src="../../../public/brand/logo TM transparent full.png"
           ></img>
         </Link>
         <button
