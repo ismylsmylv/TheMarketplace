@@ -20,12 +20,6 @@ function Navbar({ isOpen, setOpen }: Props) {
         </Link>
         <button
           className="catalogBtn rounded-lg capitalize px-10 py-3 flex items-center justify-center gap-3"
-          onMouseEnter={() => {
-            setOpen(true);
-          }}
-          onMouseLeave={() => {
-            setOpen(false);
-          }}
           onClick={() => {
             setOpen(!isOpen);
           }}

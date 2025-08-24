@@ -8,7 +8,7 @@ type Props = {
 };
 
 function Catalog({ setOpen }: Props) {
-  const [activeType, setActiveType] = useState<string | null>(null);
+  const [activeType, setActiveType] = useState<string>("products");
 
   const getCategories = (type: string) => {
     const cat = categories.find((c) => c.type === type);
@@ -19,7 +19,7 @@ function Catalog({ setOpen }: Props) {
     <div
       className="Catalog rounded p-4 m-4 w-full"
       onMouseLeave={() => {
-        setActiveType(null);
+        setActiveType("products");
         setOpen(false);
       }}
     >
