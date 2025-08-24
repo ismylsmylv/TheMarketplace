@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import App from "../App";
-import Home from "../pages/Home";
 import Details from "../pages/Details";
 import Favorites from "../pages/Favorites";
-import Profile from "../pages/Profile";
-import Promos from "../pages/Promos";
+import Home from "../pages/Home";
 import NewPoster from "../pages/NewPoster";
+import Posters from "../pages/Posters";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/promos",
-        element: <Promos />,
+        path: "/posters/:type/:category",
+        element: <Posters />,
       },
       {
         path: "/new",

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { types, categories } from "./lists";
 import "./style.scss";
+import { Link } from "react-router";
 
 type Props = {
   isOpen?: boolean;
@@ -46,8 +47,14 @@ function Catalog({ setOpen }: Props) {
               <h3 className="font-semibold text-lg mb-2">{cat.title}</h3>
               <ul className="pl-4 space-y-1 text-sm">
                 {cat.subcategories.map((sub: string) => (
-                  <li key={sub} className="subcategory cursor-pointer ">
-                    {sub}
+                  <li
+                    key={sub}
+                    className="subcategory cursor-pointer "
+                    onClick={() => setOpen(false)}
+                  >
+                    <Link to={`/posters/${activeType}/${cat.title}?sub=${sub}`}>
+                      {sub}
+                    </Link>
                   </li>
                 ))}
               </ul>
