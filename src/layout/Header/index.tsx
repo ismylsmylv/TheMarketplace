@@ -3,7 +3,7 @@ import Catalog from "../../components/Catalog";
 import Navbar from "../../components/Navbar";
 
 function Header() {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
 
   return (
     <div className="Header">

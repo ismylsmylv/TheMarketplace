@@ -3,4 +3,11 @@
     border: 1px solid $border-color;
     background-color: $background-color;
     max-width: 60vw;
+    margin: 10px auto;
+
+    .subcategory {
+        &:hover {
+            color: $accent-color;
+        }
+    }
 }
