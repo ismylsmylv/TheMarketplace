@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import NewPoster from "../pages/NewPoster";
 import Posters from "../pages/Posters";
 import Profile from "../pages/Profile";
+import Chats from "../pages/Chats";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/posters/:type/:category",
         element: <Posters />,
+      },
+      {
+        path: "/chats",
+        element: <Chats />,
       },
       {
         path: "/new",

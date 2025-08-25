@@ -1,16 +1,15 @@
-import { faBoxOpen, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
-
+import { faHeart, faMessage, faUser } from "@fortawesome/free-solid-svg-icons";
 export const navs = [
   {
-    url: "/promos",
-    icon: faBoxOpen
+    url: "/chats",
+    icon: faMessage,
   },
   {
     url: "/favorites",
-    icon: faHeart
+    icon: faHeart,
   },
   {
     url: "/profile",
-    icon: faUser
-  }
+    icon: faUser,
+  },
 ];
