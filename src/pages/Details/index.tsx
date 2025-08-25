@@ -24,8 +24,8 @@ function Details() {
           </button>
         </div>
       </section>
-      <section className="mt-5  intro  gap-10 ">
-        <div className="gallery">
+      <section className="mt-5  intro ">
+        <div className="gallery mb-10">
           <GalleryCarousel />
         </div>
         <div className="info rounded p-5">
