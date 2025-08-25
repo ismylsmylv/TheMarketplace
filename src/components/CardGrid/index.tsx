@@ -10,7 +10,7 @@ type Props = {
 
 function CardGrid({ heading }: Props) {
   return (
-    <div className="CardGrid  container py-3">
+    <div className="CardGrid  container py-3 ">
       {heading && (
         <div className="heading flex items-center justify-between py-10">
           <h1 className="text-2xl">{heading.title}</h1>
@@ -19,7 +19,7 @@ function CardGrid({ heading }: Props) {
           </Link>
         </div>
       )}
-      <div className="grid gap-3">
+      <div className="grid ">
         <Card />
         <Card />
         <Card />

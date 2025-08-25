@@ -4,7 +4,7 @@ function Card() {
   return (
     <Link
       to={"/details/1"}
-      className="Card rounded-lg cursor-pointer overflow-hidden"
+      className="Card rounded-lg cursor-pointer overflow-hidden m-2"
       target="_blank"
     >
       <img
