@@ -3,7 +3,12 @@
     .bigImg {
         object-fit: cover;
         width: 100%;
-        height: 600px;
+        height: 60vh;
+        max-height: 600px;
+    }
+
+    .list {
+        overflow-x: scroll;
     }
 
     .smallImg {

@@ -11,7 +11,7 @@ import CardGrid from "../../components/CardGrid";
 function Details() {
   return (
     <div className="Details container p-4">
-      <section className="topLine flex items-center justify-between">
+      <section className="topLine flex items-center justify-between flex-wrap">
         <strong className="text-2xl">Apple MacBook Pro (14-inch, M3)</strong>
         <div className="actions flex items-center justify-end gap-7 ">
           <button>
@@ -58,8 +58,8 @@ function Details() {
           </button>
         </div>
       </section>
-      <div className="detailTexts">
-        <section>
+      <div className="detailTexts ">
+        <section className="w-full">
           <ul className="detailsList grid grid-cols-2 gap-5 mt-6">
             {detailsList.map((item) => (
               <li className="flex items-center justify-between my-1">
@@ -70,7 +70,7 @@ function Details() {
               </li>
             ))}
           </ul>
-          <div className="description text-justify my-5 py-9">
+          <div className="description text-justify my-5 py-9 w-full">
             This MacBook has undergone a comprehensive inspection, rigorous
             testing, and meticulous cleaning, surpassing industry standards to
             ensure flawless functionality. This refurbished device is in good
