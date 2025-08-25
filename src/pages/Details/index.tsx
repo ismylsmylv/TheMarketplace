@@ -24,7 +24,7 @@ function Details() {
           </button>
         </div>
       </section>
-      <section className="mt-5 flex items-start justify-center gap-10">
+      <section className="mt-5  intro  gap-10 ">
         <div className="gallery">
           <GalleryCarousel />
         </div>
@@ -58,37 +58,39 @@ function Details() {
           </button>
         </div>
       </section>
-      <section>
-        <ul className="detailsList grid grid-cols-2 gap-5 mt-6">
-          {detailsList.map((item) => (
-            <li className="flex items-center justify-between my-1">
-              <div className="title text-gray-400 font-semibold">
-                {item.title}
-              </div>
-              <div className="value">{item.value}</div>
-            </li>
-          ))}
-        </ul>
-        <div className="description text-justify my-5 py-9">
-          This MacBook has undergone a comprehensive inspection, rigorous
-          testing, and meticulous cleaning, surpassing industry standards to
-          ensure flawless functionality. This refurbished device is in good
-          cosmetic condition, exhibiting signs of wear from normal use including
-          scratching and dents on the casing. This device is an excellent
-          choice, especially for users intending to use a protective case with
-          the device. Enjoy a device with guaranteed 80%+ battery health,
-          complete with compatible accessories. Please note that the original
-          packaging is not included.
-        </div>
+      <div className="detailTexts">
+        <section>
+          <ul className="detailsList grid grid-cols-2 gap-5 mt-6">
+            {detailsList.map((item) => (
+              <li className="flex items-center justify-between my-1">
+                <div className="title text-gray-400 font-semibold">
+                  {item.title}
+                </div>
+                <div className="value">{item.value}</div>
+              </li>
+            ))}
+          </ul>
+          <div className="description text-justify my-5 py-9">
+            This MacBook has undergone a comprehensive inspection, rigorous
+            testing, and meticulous cleaning, surpassing industry standards to
+            ensure flawless functionality. This refurbished device is in good
+            cosmetic condition, exhibiting signs of wear from normal use
+            including scratching and dents on the casing. This device is an
+            excellent choice, especially for users intending to use a protective
+            case with the device. Enjoy a device with guaranteed 80%+ battery
+            health, complete with compatible accessories. Please note that the
+            original packaging is not included.
+          </div>
 
-        <div className="postDetails flex items-center justify-start gap-10">
-          {detailsPosted.map((value) => (
-            <p className="font-light text-gray-700">
-              {value == "id" ? `№${value}` : value}
-            </p>
-          ))}
-        </div>
-      </section>
+          <div className="postDetails flex items-center justify-start gap-10">
+            {detailsPosted.map((value) => (
+              <p className="font-light text-gray-700">
+                {value == "id" ? `№${value}` : value}
+              </p>
+            ))}
+          </div>
+        </section>
+      </div>
       <CardGrid heading={{ title: "More like this", url: "/" }} />
     </div>
   );
