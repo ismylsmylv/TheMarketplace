@@ -5,9 +5,8 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-color: $background-color;
-    max-width: 60vw;
     margin: 0 auto;
-    height: 80vh;
+    height: 100%;
     transition: 200ms linear;
 
     li {
@@ -20,5 +19,13 @@
 
     .activeType {
         color: $accent-color;
+    }
+
+    .list {
+        height: max-content;
+
+        @media (max-width:700px) {
+            grid-template-columns: 1fr !important;
+        }
     }
 }

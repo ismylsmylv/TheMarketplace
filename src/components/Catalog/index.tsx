@@ -18,7 +18,7 @@ function Catalog({ setOpen }: Props) {
 
   return (
     <div
-      className="Catalog rounded p-4 m-4 w-full  left-auto right-auto"
+      className="Catalog container rounded p-4 m-4 w-full  left-auto right-auto"
       onMouseLeave={() => {
         setActiveType("products");
         setOpen(false);
@@ -41,7 +41,7 @@ function Catalog({ setOpen }: Props) {
 
       {/* categories & subcategories */}
       {activeType && (
-        <div className="mt-4 grid grid-cols-2 gap-6">
+        <div className="list mt-4 grid grid-cols-2 gap-6 ">
           {getCategories(activeType).map((cat) => (
             <div key={cat.title} className="category">
               <h3 className="font-semibold text-lg mb-2">{cat.title}</h3>
