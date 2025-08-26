@@ -25,7 +25,7 @@ function Header() {
 
         <div
           className={`overflow-hidden transition-all duration-500 ease-in-out`}
-          style={{ maxHeight: open ? "80vh" : "0px" }}
+          style={{ maxHeight: open ? "100vh" : "0px" }}
         >
           <Catalog isOpen={open} setOpen={setOpen} />
         </div>
