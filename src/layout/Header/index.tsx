@@ -4,7 +4,7 @@ import Catalog from "../../components/Catalog";
 import Navbar from "../../components/Navbar";
 import "./style.scss";
 
-const HIDDEN_ROUTES = ["/login"];
+const HIDDEN_ROUTES = ["/login", "/reset-password"];
 
 function Header({ className = "" }) {
   const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(false);
