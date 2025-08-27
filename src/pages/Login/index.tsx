@@ -1,9 +1,10 @@
+import BrandLogoLg from "../../../public/brand/logo TM transparent full.png";
 function Login() {
   return (
     <div className="Login">
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
         <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-          <h1 className="font-bold text-center text-2xl mb-5">Your Logo</h1>
+          <img src={BrandLogoLg} alt="logo" className="h-24 m-0 m-auto" />
           <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
             <div className="px-5 py-7">
               <label className="font-semibold text-sm text-gray-600 pb-1 block">
@@ -42,26 +43,21 @@ function Login() {
               </button>
             </div>
             <div className="p-5">
-              <div className="grid grid-cols-3 gap-1">
-                <button
-                  type="button"
-                  className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
-                >
-                  MailUp
-                </button>
-                <button
-                  type="button"
-                  className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
-                >
-                  Google
-                </button>
-                <button
-                  type="button"
-                  className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
-                >
-                  Github
-                </button>
-              </div>
+              <button
+                type="button"
+                className="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block"
+              >
+                <div className=" flex items-center justify-center gap-3">
+                  <img
+                    className="h-5 w-fit object-contain "
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png"
+                    alt="sign in with"
+                  />
+                  <p className="w-fit">
+                    Continue with <b>Google</b>
+                  </p>
+                </div>
+              </button>
             </div>
             <div className="py-5">
               <div className="grid grid-cols-2 gap-1">
@@ -124,9 +120,7 @@ function Login() {
                       d="M10 19l-7-7m0 0l7-7m-7 7h18"
                     />
                   </svg>
-                  <span className="inline-block ml-1">
-                    Back to your-app.com
-                  </span>
+                  <span className="inline-block ml-1">Back to home</span>
                 </button>
               </div>
             </div>
