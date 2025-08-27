@@ -7,6 +7,7 @@ import NewPoster from "../pages/NewPoster";
 import Posters from "../pages/Posters";
 import Profile from "../pages/Profile";
 import Chats from "../pages/Chats";
+import Login from "../pages/Login";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/new",
         element: <NewPoster />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

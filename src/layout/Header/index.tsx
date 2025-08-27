@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import "./style.scss";
 function Header() {
   const [open, setOpen] = useState<boolean>(false);
+  const pathname = window.location.pathname;
   useEffect(() => {
     const handleScroll = () => {
       if (!window.scrollY) {
@@ -21,7 +22,7 @@ function Header() {
   return (
     <div className="Header sticky top-0 z-50">
       <div className="relative">
-        <Navbar isOpen={open} setOpen={setOpen} />
+        {pathname != "/login" && <Navbar isOpen={open} setOpen={setOpen} />}
 
         <div
           className={`overflow-hidden transition-all duration-500 ease-in-out`}
