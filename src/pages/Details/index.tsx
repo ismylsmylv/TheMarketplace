@@ -14,8 +14,8 @@ import "./style.scss";
 function Details() {
   const [state, setState] = useState({
     open: false,
-    vertical: "bottom",
-    horizontal: "right",
+    vertical: "bottom" as "bottom" | "top",
+    horizontal: "right" as "right" | "left" | "center",
   });
   const { vertical, horizontal, open } = state;
   function SlideTransition(props: SlideProps) {
@@ -30,8 +30,6 @@ function Details() {
         key={vertical + horizontal}
         slots={{ transition: SlideTransition }}
         autoHideDuration={1200}
-        severity="success"
-        variant="filled"
       />
 
       <section className="topLine flex items-center justify-between flex-wrap">
