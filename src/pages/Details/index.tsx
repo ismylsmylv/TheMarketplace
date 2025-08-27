@@ -8,13 +8,32 @@ import GalleryCarousel from "../../components/GalleryCarousel";
 import "./style.scss";
 import { detailsList, detailsPosted } from "./mockdata";
 import CardGrid from "../../components/CardGrid";
+import Snackbar from "@mui/material/Snackbar";
+import React, { useState } from "react";
 function Details() {
+  const [state, setState] = useState({
+    open: false,
+    vertical: "bottom",
+    horizontal: "right",
+  });
+  const { vertical, horizontal, open } = state;
+
   return (
     <div className="Details container p-4">
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        message="I love snacks"
+        key={vertical + horizontal}
+      />
       <section className="topLine flex items-center justify-between flex-wrap">
         <strong className="text-2xl">Apple MacBook Pro (14-inch, M3)</strong>
         <div className="actions flex items-center justify-end gap-7 ">
-          <button>
+          <button
+            onClick={() => {
+              setState({ ...state, open: true });
+            }}
+          >
             <FontAwesomeIcon icon={faHeart} />
             <p className="text-gray-500 ">Add to favorites</p>
           </button>
