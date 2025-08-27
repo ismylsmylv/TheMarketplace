@@ -9,6 +9,7 @@ import Profile from "../pages/Profile";
 import Chats from "../pages/Chats";
 import Login from "../pages/Login";
 import Help from "../pages/Help";
+import ResetPassword from "../pages/ResetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/help",
         element: <Help />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
       },
     ],
   },
