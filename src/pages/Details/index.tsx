@@ -4,12 +4,13 @@ import {
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import GalleryCarousel from "../../components/GalleryCarousel";
-import "./style.scss";
-import { detailsList, detailsPosted } from "./mockdata";
-import CardGrid from "../../components/CardGrid";
+import Slide, { type SlideProps } from "@mui/material/Slide";
 import Snackbar from "@mui/material/Snackbar";
-import React, { useState } from "react";
+import { useState } from "react";
+import CardGrid from "../../components/CardGrid";
+import GalleryCarousel from "../../components/GalleryCarousel";
+import { detailsList, detailsPosted } from "./mockdata";
+import "./style.scss";
 function Details() {
   const [state, setState] = useState({
     open: false,
@@ -17,7 +18,9 @@ function Details() {
     horizontal: "right",
   });
   const { vertical, horizontal, open } = state;
-
+  function SlideTransition(props: SlideProps) {
+    return <Slide {...props} direction="up" />;
+  }
   return (
     <div className="Details container p-4">
       <Snackbar
@@ -25,7 +28,12 @@ function Details() {
         open={open}
         message="I love snacks"
         key={vertical + horizontal}
+        slots={{ transition: SlideTransition }}
+        autoHideDuration={1200}
+        severity="success"
+        variant="filled"
       />
+
       <section className="topLine flex items-center justify-between flex-wrap">
         <strong className="text-2xl">Apple MacBook Pro (14-inch, M3)</strong>
         <div className="actions flex items-center justify-end gap-7 ">
