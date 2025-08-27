@@ -8,6 +8,7 @@ import Posters from "../pages/Posters";
 import Profile from "../pages/Profile";
 import Chats from "../pages/Chats";
 import Login from "../pages/Login";
+import Help from "../pages/Help";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/help",
+        element: <Help />,
       },
     ],
   },
