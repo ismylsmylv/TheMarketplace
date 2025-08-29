@@ -3,7 +3,7 @@ import BrandLogoLg from "../../../public/brand/logo TM transparent full.png";
 function Login() {
   return (
     <div className="Login">
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+      <div className=" bg-gray-100 flex flex-col justify-center sm:py-12">
         <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
           <img src={BrandLogoLg} alt="logo" className="h-24 m-0 m-auto" />
           <div className="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
@@ -19,7 +19,7 @@ function Login() {
                 Password
               </label>
               <input
-                type="text"
+                type="password"
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
               />
               <button
