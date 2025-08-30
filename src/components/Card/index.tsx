@@ -2,18 +2,41 @@ import { Link } from "react-router";
 import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 function Card() {
+  const sampleVideo =
+    "https://v.etsystatic.com/video/upload/ac_none,du_15,q_auto:good/Chelsea_uvodne_video_no_text_hzcgdv_yabzxm.mp4";
+  const sampleImage =
+    "https://cdn.mos.cms.futurecdn.net/76BX7qw85vqQucCvUnTHHQ.jpg";
+  const [hover, setHover] = useState(false);
   return (
     <Link
       to={"/details/1"}
       className="Card  cursor-pointer px-2  overflow-hidden  relative  "
       target="_blank"
     >
-      <img
-        src="https://laptopmedia.com/wp-content/uploads/2023/12/10-5.jpg"
-        alt=""
-        className="rounded-lg "
-      />
+      <div
+        onMouseEnter={() => {
+          setHover(true);
+        }}
+        onMouseLeave={() => {
+          setHover(false);
+        }}
+      >
+        {hover ? (
+          <video
+            height={400}
+            src={sampleVideo}
+            className="rounded-lg"
+            autoPlay
+            playsInline
+            muted
+            loop
+          ></video>
+        ) : (
+          <img src={sampleImage} alt="Cover image" className="rounded-lg " />
+        )}
+      </div>
       <button className="fav  size-8 rounded-full flex  items-center justify-center absolute top-2 right-4 bg-sky-50">
         <FontAwesomeIcon icon={faHeart} />
       </button>
