@@ -1,20 +1,28 @@
 import { Link } from "react-router";
 import "./style.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 function Card() {
   return (
     <Link
       to={"/details/1"}
-      className="Card rounded-lg cursor-pointer overflow-hidden m-2"
+      className="Card  cursor-pointer px-2  overflow-hidden  relative  "
       target="_blank"
     >
       <img
         src="https://laptopmedia.com/wp-content/uploads/2023/12/10-5.jpg"
         alt=""
+        className="rounded-lg "
       />
-      <div className="infos p-3 ">
-        <b>2500 AZN</b>
+      <button className="fav  size-8 rounded-full flex  items-center justify-center absolute top-2 right-4 bg-sky-50">
+        <FontAwesomeIcon icon={faHeart} />
+      </button>
+      <div className="infos py-3 ">
         <p className="name line-clamp-1">Apple MacBook Pro (14-inch, M3)</p>
         <p className="date text-xs mt-2">Baku, today, 13:43</p>
+        <p className="delivery text-xs mt-2">Free delivery</p>
+
+        <b>2500 AZN</b>
       </div>
     </Link>
   );

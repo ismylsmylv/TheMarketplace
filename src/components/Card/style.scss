@@ -1,18 +1,26 @@
 .Card {
-    background-color: $secondary-color;
-    max-height: 280px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
     img {
-        height: 180px;
+        height: 400px;
         width: 100%;
         object-fit: cover;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
 
+
+        &:hover {
+            transition: box-shadow .2s ease-in-out;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+    }
+
+    .fav {
+        transform: translateY(-150%);
+        transition: 100ms ease-in-out;
     }
 
     &:hover {
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+        .fav {
+            display: flex;
+            transform: translateY(0);
+        }
     }
 }
