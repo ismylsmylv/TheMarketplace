@@ -1,7 +1,13 @@
 .CardGrid {
+
+    .heading,
     .grid {
-        max-width: 80vw;
+
         margin: 0 auto;
+        max-width: 80vw;
+    }
+
+    .grid {
         grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(200px, 100%/4)), 1fr));
 
     }
