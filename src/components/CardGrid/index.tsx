@@ -12,7 +12,7 @@ function CardGrid({ heading }: Props) {
   return (
     <div className="CardGrid   py-3 ">
       {heading && (
-        <div className="heading flex items-center justify-between py-10">
+        <div className="heading flex items-center justify-between py-10 px-2">
           <h1 className="text-2xl">{heading.title}</h1>
           <Link to={heading.url} className="text-gray-500">
             See all
