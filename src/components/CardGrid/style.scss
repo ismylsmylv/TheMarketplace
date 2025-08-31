@@ -8,7 +8,7 @@
     }
 
     .grid {
-        grid-template-columns: repeat(auto-fit, minmax(min(100%/2, max(300px, 100%/4)), 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%/2, max(250px, 100%/4)), 1fr));
 
     }
 

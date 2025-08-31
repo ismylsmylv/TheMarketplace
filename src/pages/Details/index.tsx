@@ -1,7 +1,7 @@
 import {
   faHeart,
   faPhone,
-  faTriangleExclamation,
+  faTriangleExclamation
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slide, { type SlideProps } from "@mui/material/Slide";
@@ -15,14 +15,14 @@ function Details() {
   const [state, setState] = useState({
     open: false,
     vertical: "bottom" as "bottom" | "top",
-    horizontal: "right" as "right" | "left" | "center",
+    horizontal: "right" as "right" | "left" | "center"
   });
   const { vertical, horizontal, open } = state;
   function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction="up" />;
   }
   return (
-    <div className="Details container p-4">
+    <div className="Details container py-4">
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
         open={open}
