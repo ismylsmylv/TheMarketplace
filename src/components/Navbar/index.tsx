@@ -21,6 +21,7 @@ type Props = {
 function Navbar({ isOpen, setOpen }: Props) {
   const [width, setWidth] = useState(window.innerWidth);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [isBarsExpanded, setBarsExpanded] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -132,7 +133,7 @@ function Navbar({ isOpen, setOpen }: Props) {
                          max-lg:hidden"
           >
             <div className="flex items-center gap-2">
-              {navs.map((nav) => (
+              {navs.slice(0, 3).map((nav) => (
                 <Link
                   to={nav.url}
                   className="flex h-12 min-w-12 items-center justify-center rounded-lg border border-gray-300 
@@ -170,6 +171,9 @@ function Navbar({ isOpen, setOpen }: Props) {
                         max-sm:h-10 max-sm:min-w-10 max-sm:p-2.5
                         max-[700px]:h-9 max-[700px]:min-w-9 max-[700px]:p-2 max-[700px]:rounded-md"
               aria-label="Open mobile menu"
+              onClick={() => {
+                setBarsExpanded(!isBarsExpanded);
+              }}
             >
               <FontAwesomeIcon icon={faBars} />
             </button>
@@ -185,6 +189,41 @@ function Navbar({ isOpen, setOpen }: Props) {
           </div>
         </div>
       )}
+
+      {/* Expanded Bars for Mobile */}
+      <div
+        className={`
+    sticky top-20 z-[999] border-b border-gray-200 bg-white
+    overflow-hidden transition-all duration-300 ease-in-out
+    ${
+      isBarsExpanded
+        ? "max-h-96 opacity-100 pointer-events-auto"
+        : "max-h-0 opacity-0 pointer-events-none border-transparent"
+    }
+  `}
+      >
+        <div className="mx-auto max-w-[1200px] p-4 xl:max-w-[1400px] xl:px-8">
+          {navs.map((nav) => (
+            <Link
+              to={nav.url}
+              className="
+          flex h-12 min-w-12 items-center justify-start gap-2 rounded-lg 
+          text-gray-700 no-underline capitalize
+          transition-all duration-500 ease-in-out
+          hover:bg-gray-100 hover:border-gray-400
+        "
+              key={nav.url}
+              aria-label={nav.url}
+              onClick={() => {
+                setBarsExpanded(false);
+              }}
+            >
+              <FontAwesomeIcon icon={nav.icon} />
+              {nav.title ?? nav.url.slice(1, nav.url.length)}
+            </Link>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
