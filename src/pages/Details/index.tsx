@@ -11,6 +11,7 @@ import CardGrid from "../../components/CardGrid";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import { detailsList, detailsPosted } from "./mockdata";
 import "./style.scss";
+import OfferModal from "../../components/OfferModal";
 function Details() {
   const [state, setState] = useState({
     open: false,
@@ -18,6 +19,8 @@ function Details() {
     horizontal: "right" as "right" | "left" | "center"
   });
   const { vertical, horizontal, open } = state;
+  const [offerValues, setOfferValues] = useState({ price: 0, text: "" });
+  const [isOfferOpen, setIsOfferOpen] = useState(false);
   function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction="up" />;
   }
@@ -79,9 +82,20 @@ function Details() {
               </a>
             </div>
             {/* should open modal with new price and textarea */}
-            <button className="offer flex items-center justify-center gap-3 my-4 rounded  py-4 font-bold w-full">
-              Make an offer
-            </button>
+            {isOfferOpen ? (
+              <OfferModal
+                offerValues={offerValues}
+                setOfferValues={setOfferValues}
+                setIsOfferOpen={setIsOfferOpen}
+              />
+            ) : (
+              <button
+                className="offer flex items-center justify-center gap-3 my-4 rounded py-4 font-bold w-full bg-blue-500 text-white"
+                onClick={() => setIsOfferOpen(true)}
+              >
+                Make an offer
+              </button>
+            )}
           </div>
         </section>
         <div className="detailTexts ">
