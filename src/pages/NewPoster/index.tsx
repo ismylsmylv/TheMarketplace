@@ -1,3 +1,4 @@
+import FileUpload from "../../components/FileUpload";
 import { fields, headings } from "./mockdata";
 import "./style.scss";
 import { useForm } from "@tanstack/react-form";
@@ -93,6 +94,8 @@ function NewPoster() {
             })}
           </section>
         ))}
+
+        <FileUpload />
 
         <div className="warn font-light text-center mb-6 mt-6">
           By sharing a poster, you confirm that you agree with TheMarketplace's
