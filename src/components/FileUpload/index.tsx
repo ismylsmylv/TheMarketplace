@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-
+import "./style.scss";
 type FileItem = {
   id: string;
   file: File;
@@ -219,12 +219,14 @@ function FileUpload({}: Props) {
         <div className="relative p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold ">Upload Files</h3>
-              <p className="text-sm text-slate-400">
+              <h3 className="text-lg font-semibold text-stone-800 ">
+                Upload Files
+              </h3>
+              <p className="text-sm text-gray-700">
                 Drag & drop your files here
               </p>
             </div>
-            <div className="rounded-lg bg-cyan-500/10 p-2">
+            <div className="rounded-lg bg-cyan-500/10 p-2 opacity-0">
               <svg
                 className="h-6 w-6 text-cyan-500"
                 fill="none"
@@ -243,10 +245,10 @@ function FileUpload({}: Props) {
 
           <div className="group/dropzone mt-6">
             <div
-              className={`relative rounded-xl border-2 border-dashed p-8 transition-colors cursor-pointer ${
+              className={`relative rounded-lg border-2 p-8 transition-colors cursor-pointer ${
                 dragActive
-                  ? "border-cyan-500/50 bg-cyan-500/10"
-                  : "border-slate-700 bg-slate-900/50 group-hover/dropzone:border-cyan-500/50"
+                  ? "border-neutral-500/50 bg-neutral-500/10"
+                  : "border-neutral-100 bg-neutral-50/50 group-hover/dropzone:border-cyan-500/50"
               }`}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
@@ -263,7 +265,7 @@ function FileUpload({}: Props) {
                 onChange={handleInputChange}
               />
               <div className="space-y-6 text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-slate-900">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gray-200">
                   <svg
                     className="h-10 w-10 text-cyan-500"
                     fill="none"
@@ -280,15 +282,15 @@ function FileUpload({}: Props) {
                 </div>
 
                 <div className="space-y-2">
-                  <p className="text-base font-medium text-white">
+                  <p className="text-base font-medium text-gray-700">
                     {dragActive
                       ? "Drop files here"
                       : "Drop your files here or browse"}
                   </p>
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-gray-700">
                     Support files: Images, Videos, PDF, DOC, DOCX
                   </p>
-                  <p className="text-xs text-slate-400">Max file size: 10MB</p>
+                  <p className="text-xs text-gray-700">Max file size: 10MB</p>
                 </div>
               </div>
             </div>
@@ -297,10 +299,7 @@ function FileUpload({}: Props) {
           {files.length > 0 && (
             <div className="mt-6 space-y-4 max-h-60 overflow-y-auto">
               {files.map((fileItem) => (
-                <div
-                  key={fileItem.id}
-                  className="rounded-xl bg-slate-900/50 p-4"
-                >
+                <div key={fileItem.id} className="rounded-xl p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       {fileItem.preview &&
@@ -338,7 +337,7 @@ function FileUpload({}: Props) {
                         </div>
                       )}
                       <div>
-                        <p className="font-medium text-white truncate max-w-[200px]">
+                        <p className="font-medium  truncate max-w-[200px]">
                           {fileItem.file.name}
                         </p>
                         <p className="text-xs text-slate-400">
@@ -375,7 +374,7 @@ function FileUpload({}: Props) {
                       )}
                       <button
                         onClick={() => removeFile(fileItem.id)}
-                        className="text-slate-400 transition-colors hover:text-white"
+                        className=" border-none text-slate-400 transition-colors hover:text-white"
                       >
                         <svg
                           className="h-5 w-5"
@@ -412,9 +411,9 @@ function FileUpload({}: Props) {
           <div className="mt-6 grid grid-cols-2 gap-4">
             <button
               onClick={openFileDialog}
-              className="group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-sky-500 p-px font-medium text-white shadow-[0_1000px_0_0_hsl(0_0%_100%_/_0%)_inset] transition-colors hover:shadow-[0_1000px_0_0_hsl(0_0%_100%_/_2%)_inset]"
+              className="uploadBtn group/btn relative overflow-hidden rounded-lg  p-px font-medium text-white"
             >
-              <span className="relative flex items-center justify-center gap-2 rounded-xl bg-slate-950/50 px-4 py-2 transition-colors group-hover/btn:bg-transparent">
+              <span className="relative flex items-center justify-center gap-2 rounded-lg px-4 py-2 ">
                 Upload More
                 <svg
                   className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1"
@@ -434,24 +433,13 @@ function FileUpload({}: Props) {
             <button
               onClick={clearAll}
               disabled={files.length === 0}
-              className="flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-2 font-medium text-white transition-colors hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2 font-medium text-white transition-colors hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Clear All
             </button>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
     </div>
   );
 }

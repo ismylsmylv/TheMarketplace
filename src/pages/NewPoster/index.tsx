@@ -40,7 +40,7 @@ function NewPoster() {
               return (
                 <>
                   {headings.find((element) => element.title == item.title) ? (
-                    <h1 className="font-semibold text-xl capitalize text-center mb-4">
+                    <h1 className="font-semibold text-xl capitalize text-center mb-4 text-left">
                       {item.title}
                     </h1>
                   ) : (
@@ -101,7 +101,10 @@ function NewPoster() {
           By sharing a poster, you confirm that you agree with TheMarketplace's
           User Agreement & Privacy Policy.
         </div>
-        <button className="py-3 px-6  w-fit self-center rounded" type="submit">
+        <button
+          className="submitBtn py-3 px-6  w-fit self-center rounded"
+          type="submit"
+        >
           Post
         </button>
       </form>
