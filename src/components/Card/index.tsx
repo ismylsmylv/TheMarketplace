@@ -12,7 +12,7 @@ function Card() {
   return (
     <Link
       to={"/details/1"}
-      className="Card  cursor-pointer px-2  overflow-hidden  relative  "
+      className="Card  cursor-pointer px-2  overflow-hidden  relative w-full "
       target="_blank"
     >
       <div

@@ -288,7 +288,7 @@ function FileUpload({}: Props) {
                       : "Drop your files here or browse"}
                   </p>
                   <p className="text-sm text-gray-700">
-                    Support files: Images, Videos, PDF, DOC, DOCX
+                    Support files: Images, Videos
                   </p>
                   <p className="text-xs text-gray-700">Max file size: 10MB</p>
                 </div>
