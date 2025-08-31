@@ -1,10 +1,9 @@
 .Card {
-    min-width: 300px;
+    width: 100%;
 
     video,
     img {
-        height: 400px;
-        width: 100%;
+        aspect-ratio: 9 / 10;
         object-fit: cover;
 
 
