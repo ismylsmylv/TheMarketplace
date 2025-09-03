@@ -17,7 +17,7 @@ function Card({ data }: Props) {
   const [hover, setHover] = useState(false);
   return (
     <Link
-      to={"/details/1"}
+      to={`/details/${data._id}`}
       className="Card  cursor-pointer px-2  overflow-hidden  relative w-full "
       target="_blank"
     >
@@ -40,16 +40,23 @@ function Card({ data }: Props) {
             loop
           ></video>
         ) : (
-          <img src={sampleImage} alt="Cover image" className="rounded-lg " />
+          <img
+            src={data.media[0]?.url}
+            alt="Cover image"
+            className="rounded-lg "
+          />
         )}
       </div>
       <button className="fav  size-8 rounded-full flex  items-center justify-center absolute top-2 right-4 bg-sky-50">
         <FontAwesomeIcon icon={faHeart} />
       </button>
       <div className="infos py-3 ">
-        <p className="name line-clamp-1">Apple MacBook Pro (14-inch, M3)</p>
-        <p className="date text-xs mt-2">Baku, today, 13:43</p>
-        <p className="delivery text-xs mt-2">Free delivery</p>
+        <p className="name line-clamp-1">{data.title}</p>
+        {/* need a function to make date readable */}
+        <p className="date text-xs mt-2">
+          {data.city}, {data.createdAt}
+        </p>
+        <p className="delivery text-xs mt-2">{data.delivery}</p>
 
         <b>2500 AZN</b>
       </div>
