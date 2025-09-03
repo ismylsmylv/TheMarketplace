@@ -12,8 +12,8 @@ type Props = {
 function Card({ data }: Props) {
   const sampleVideo =
     "https://v.etsystatic.com/video/upload/ac_none,du_15,q_auto:good/Chelsea_uvodne_video_no_text_hzcgdv_yabzxm.mp4";
-  const sampleImage =
-    "https://cdn.mos.cms.futurecdn.net/76BX7qw85vqQucCvUnTHHQ.jpg";
+  // const sampleImage =
+  //   "https://cdn.mos.cms.futurecdn.net/76BX7qw85vqQucCvUnTHHQ.jpg";
   const [hover, setHover] = useState(false);
   return (
     <Link
