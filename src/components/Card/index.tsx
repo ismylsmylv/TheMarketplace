@@ -58,7 +58,7 @@ function Card({ data }: Props) {
         </p>
         <p className="delivery text-xs mt-2">{data.delivery}</p>
 
-        <b>2500 AZN</b>
+        <b>{data.price} AZN</b>
       </div>
     </Link>
   );
