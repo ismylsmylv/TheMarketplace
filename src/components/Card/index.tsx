@@ -3,7 +3,13 @@ import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-function Card() {
+import type { ProductInterface } from "../../types/products";
+
+type Props = {
+  data: ProductInterface;
+};
+
+function Card({ data }: Props) {
   const sampleVideo =
     "https://v.etsystatic.com/video/upload/ac_none,du_15,q_auto:good/Chelsea_uvodne_video_no_text_hzcgdv_yabzxm.mp4";
   const sampleImage =

@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import Card from "../Card";
 import "./style.scss";
+import { useEffect, useState } from "react";
+import type { ProductInterface } from "./../../types/products";
 type Props = {
   heading?: {
     title: string;
@@ -9,6 +11,23 @@ type Props = {
 };
 
 function CardGrid({ heading }: Props) {
+  const [products, setProducts] = useState<ProductInterface[]>([]);
+
+  const handleFetch = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/products");
+      const data = await res.json();
+      setProducts(data);
+      console.log(data); // log fetched data directly
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
   return (
     <div className="CardGrid   py-3 ">
       {heading && (
@@ -20,47 +39,9 @@ function CardGrid({ heading }: Props) {
         </div>
       )}
       <div className="grid ">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {products?.map((item) => (
+          <Card data={item} />
+        ))}
       </div>
     </div>
   );
