@@ -1,1 +1,4 @@
-.Footer {}
+.Footer {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%/2, max(250px, 100%/3)), 1fr));
+
+}
