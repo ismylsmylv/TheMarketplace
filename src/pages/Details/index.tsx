@@ -143,7 +143,7 @@ function Details() {
             <div className="postDetails flex items-center justify-start gap-10">
               {detailsPosted.map((value) => (
                 <p className="font-light text-gray-700">
-                  {value == "id" ? `№${id}` : data[value]}
+                  {value == "id" ? `№${id}` : `${value} ${data[value]}`}
                 </p>
               ))}
             </div>
