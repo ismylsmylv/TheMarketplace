@@ -6,24 +6,48 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slide, { type SlideProps } from "@mui/material/Slide";
 import Snackbar from "@mui/material/Snackbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardGrid from "../../components/CardGrid";
 import GalleryCarousel from "../../components/GalleryCarousel";
 import { detailsList, detailsPosted } from "./mockdata";
 import "./style.scss";
 import OfferModal from "../../components/OfferModal";
+import { useParams } from "react-router";
+import type { ProductInterface } from "../../types/products";
 function Details() {
+  const { id } = useParams();
   const [state, setState] = useState({
     open: false,
     vertical: "bottom" as "bottom" | "top",
     horizontal: "right" as "right" | "left" | "center"
   });
+
+  const [data, setData] = useState({} as ProductInterface);
+
   const { vertical, horizontal, open } = state;
   const [offerValues, setOfferValues] = useState({ price: 0, text: "" });
   const [isOfferOpen, setIsOfferOpen] = useState(false);
   function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction="up" />;
   }
+  const handleFetch = async () => {
+    try {
+      // switch to getByID after API fix
+      const res = await fetch(`http://localhost:3000/products`);
+      const data = await res.json();
+      const found = data.filter((item) => item._id == id);
+      console.log(found);
+      setData(found[0]);
+      console.log(data); // log fetched data directly
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
   return (
     <div className="Details container py-4">
       <Snackbar
@@ -37,7 +61,7 @@ function Details() {
 
       <div className="p-2">
         <section className="topLine flex items-center justify-between flex-wrap gap-3">
-          <strong className="text-2xl">Apple MacBook Pro (14-inch, M3)</strong>
+          <strong className="text-2xl">{data.title}</strong>
           <div className="actions flex items-center justify-end gap-7 ">
             <button
               onClick={() => {
@@ -59,7 +83,9 @@ function Details() {
           </div>
           <div className="info rounded-lg p-5">
             <div className="financial">
-              <div className="price text-3xl font-bold mb-6 pb-4">1500 AZN</div>
+              <div className="price text-3xl font-bold mb-6 pb-4">
+                {data.price} AZN
+              </div>
             </div>
             <div className="flex items-center justify-start">
               <img
@@ -67,8 +93,8 @@ function Details() {
                 alt="Profile picture"
               />
               <div className="infos">
-                <h1 className="font-bold">Sam Altman</h1>
-                <div className="location ">Baku, Yasamal</div>
+                <h1 className="font-bold">{data.ownerInfo?.name}</h1>
+                <div className="location ">{data.city}</div>
                 <div className="rate text-xs">90% success rate</div>
               </div>
             </div>
@@ -78,7 +104,7 @@ function Details() {
                 className="phone flex items-center justify-center gap-3 my-4 rounded text-white py-4 font-bold"
               >
                 <FontAwesomeIcon icon={faPhone} />
-                +123456789
+                {data.ownerInfo?.phone}
               </a>
             </div>
             {/* should open modal with new price and textarea */}
@@ -104,28 +130,20 @@ function Details() {
               {detailsList.map((item) => (
                 <li className="flex items-center justify-between my-1">
                   <div className="title text-gray-400 font-semibold">
-                    {item.title}
+                    {item?.title}
                   </div>
-                  <div className="value">{item.value}</div>
+                  <div className="value">{data[item?.value]}</div>
                 </li>
               ))}
             </ul>
             <div className="description text-justify my-5 py-9 w-full">
-              This MacBook has undergone a comprehensive inspection, rigorous
-              testing, and meticulous cleaning, surpassing industry standards to
-              ensure flawless functionality. This refurbished device is in good
-              cosmetic condition, exhibiting signs of wear from normal use
-              including scratching and dents on the casing. This device is an
-              excellent choice, especially for users intending to use a
-              protective case with the device. Enjoy a device with guaranteed
-              80%+ battery health, complete with compatible accessories. Please
-              note that the original packaging is not included.
+              {data.description}
             </div>
 
             <div className="postDetails flex items-center justify-start gap-10">
               {detailsPosted.map((value) => (
                 <p className="font-light text-gray-700">
-                  {value == "id" ? `№${value}` : value}
+                  {value == "id" ? `№${id}` : data[value]}
                 </p>
               ))}
             </div>
