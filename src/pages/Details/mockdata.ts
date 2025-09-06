@@ -1,4 +1,7 @@
-export const detailsList = [
+import type { DetailItem } from "../../types/lists";
+import type { ProductInterface } from "../../types/products";
+
+export const detailsList: DetailItem[] = [
   {
     title: "City",
     value: "city",
@@ -21,4 +24,8 @@ export const detailsList = [
   },
 ];
 
-export const detailsPosted = ["id", "date", "views"];
+export const detailsPosted: (keyof ProductInterface)[] = [
+  "_id",
+  "createdAt",
+  "views",
+];

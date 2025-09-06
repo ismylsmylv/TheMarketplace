@@ -1,7 +1,7 @@
 import {
   faHeart,
   faPhone,
-  faTriangleExclamation
+  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Slide, { type SlideProps } from "@mui/material/Slide";
@@ -19,7 +19,7 @@ function Details() {
   const [state, setState] = useState({
     open: false,
     vertical: "bottom" as "bottom" | "top",
-    horizontal: "right" as "right" | "left" | "center"
+    horizontal: "right" as "right" | "left" | "center",
   });
 
   const [data, setData] = useState({} as ProductInterface);
@@ -35,7 +35,9 @@ function Details() {
       // switch to getByID after API fix
       const res = await fetch(`http://localhost:3000/products`);
       const data = await res.json();
-      const found = data.filter((item) => item._id == id);
+      const found = data.filter(
+        (item: { _id: string | undefined }) => item._id == id
+      );
       console.log(found);
       setData(found[0]);
       console.log(data); // log fetched data directly
@@ -124,26 +126,30 @@ function Details() {
             )}
           </div>
         </section>
-        <div className="detailTexts ">
+        <div className="detailTexts">
           <section className="w-full">
             <ul className="detailsList grid grid-cols-2 gap-5 mt-6">
               {detailsList.map((item) => (
-                <li className="flex items-center justify-between my-1">
+                <li
+                  key={item.value}
+                  className="flex items-center justify-between my-1"
+                >
                   <div className="title text-gray-400 font-semibold">
-                    {item?.title}
+                    {item.title}
                   </div>
-                  <div className="value">{data[item?.value]}</div>
+                  <div className="value">{String(data[item.value])}</div>
                 </li>
               ))}
             </ul>
+
             <div className="description text-justify my-5 py-9 w-full">
               {data.description}
             </div>
 
             <div className="postDetails flex items-center justify-start gap-10">
               {detailsPosted.map((value) => (
-                <p className="font-light text-gray-700">
-                  {value == "id" ? `№${id}` : `${value} ${data[value]}`}
+                <p key={value} className="font-light text-gray-700">
+                  {value === "_id" ? `№${data._id}` : `${value} ${data[value]}`}
                 </p>
               ))}
             </div>
