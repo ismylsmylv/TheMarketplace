@@ -1,7 +1,7 @@
 export const fields = [
   // Section headers (these will be skipped in rendering)
   {
-    title: "about product"
+    title: "about product",
   },
   {
     title: "category",
@@ -16,15 +16,15 @@ export const fields = [
       { value: "books", label: "Books & Media" },
       { value: "automotive", label: "Automotive" },
       { value: "toys", label: "Toys & Games" },
-      { value: "other", label: "Other" }
-    ]
+      { value: "other", label: "Other" },
+    ],
   },
   {
     title: "subcategory",
     value: "subcategory",
     type: "text",
     placeholder: "e.g., Smartphones, Laptops, Jackets, etc.",
-    required: true
+    required: true,
   },
   {
     title: "title",
@@ -32,14 +32,14 @@ export const fields = [
     type: "text",
     placeholder: "Give your item a catchy title",
     required: true,
-    fullWidth: true
+    fullWidth: true,
   },
   {
     title: "brand",
     value: "brand",
     type: "text",
     placeholder: "e.g., Apple, Samsung, Nike",
-    required: false
+    required: false,
   },
   {
     title: "condition",
@@ -48,12 +48,8 @@ export const fields = [
     required: true,
     options: [
       { value: "new", label: "Brand New" },
-      { value: "like-new", label: "Like New" },
-      { value: "excellent", label: "Excellent" },
-      { value: "good", label: "Good" },
-      { value: "fair", label: "Fair" },
-      { value: "poor", label: "Poor/For Parts" }
-    ]
+      { value: "used", label: "Used" },
+    ],
   },
   // {
   //   title: "key features",
@@ -72,12 +68,12 @@ export const fields = [
       "Describe your item in detail. Include any flaws, history, or special notes.",
     required: true,
     fullWidth: true,
-    rows: 4
+    rows: 4,
   },
 
   // Dealing section header
   {
-    title: "dealing"
+    title: "dealing",
   },
   {
     title: "price",
@@ -86,69 +82,69 @@ export const fields = [
     placeholder: "Enter price in your local currency",
     required: true,
     min: 0,
-    step: 0.01
+    step: 0.01,
   },
   {
     title: "city/location",
     value: "city",
     type: "text",
     placeholder: "Where is the item located?",
-    required: true
+    required: true,
   },
   {
     title: "offer delivery",
     value: "delivery",
     type: "checkbox",
-    required: false
+    required: false,
   },
   {
     title: "accept barter/trade",
     value: "barter",
     type: "checkbox",
-    required: false
+    required: false,
   },
 
   // Your info section header
   {
-    title: "your info"
+    title: "your info",
   },
   {
     title: "your name",
     value: "ownerInfo.name",
     type: "text",
     placeholder: "How should buyers contact you?",
-    required: true
+    required: true,
   },
   {
     title: "email address",
     value: "ownerInfo.email",
     type: "email",
     placeholder: "your.email@example.com",
-    required: true
+    required: true,
   },
   {
     title: "phone number",
     value: "ownerInfo.phone",
     type: "text",
     placeholder: "Your contact number (optional)",
-    required: false
-  }
+    required: false,
+  },
 ];
 
 export const headings = [
   {
     title: "about product",
     start: 0,
-    end: 8
+    end: 8,
   },
   {
     title: "dealing",
     start: 8,
-    end: 13
+    end: 13,
   },
   {
     title: "your info",
     start: 13,
-    end: 16
-  }
+    end: 16,
+  },
 ];

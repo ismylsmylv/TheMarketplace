@@ -37,7 +37,7 @@ function NewPoster() {
       city: "",
       delivery: false,
       barter: false,
-      status: true,
+      status: "active",
       media: [],
       createdAt: "",
       offers: [],
