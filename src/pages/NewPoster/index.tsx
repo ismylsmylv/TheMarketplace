@@ -830,7 +830,7 @@ function NewPoster() {
                               </label>
                             )}
 
-                            {renderField(item, field)}
+                            {renderField(item, field as any)}
 
                             {!field.state.meta.isValid && (
                               <p className="mt-2 text-sm text-red-600 flex items-center">
