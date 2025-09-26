@@ -15,7 +15,7 @@ function CardGrid({ heading }: Props) {
 
   const handleFetch = async () => {
     try {
-      const res = await fetch("http://localhost:3000/products");
+      const res = await fetch(import.meta.env.API_URL + "/products");
       const data = await res.json();
       setProducts(data);
       console.log(data); // log fetched data directly

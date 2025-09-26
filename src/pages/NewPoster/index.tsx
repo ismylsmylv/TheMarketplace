@@ -45,7 +45,7 @@ function NewPoster() {
     },
     onSubmit: async ({ value }) => {
       // test post
-      fetch("http://localhost:3000/products", {
+      fetch(import.meta.env.API_URL + "/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
