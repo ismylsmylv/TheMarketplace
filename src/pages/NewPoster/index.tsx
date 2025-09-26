@@ -45,7 +45,7 @@ function NewPoster() {
     },
     onSubmit: async ({ value }) => {
       // test post
-      fetch(import.meta.env.API_URL + "/products", {
+      fetch(import.meta.env.VITE_API_URL + "/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

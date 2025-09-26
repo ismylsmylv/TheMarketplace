@@ -33,7 +33,7 @@ function Details() {
   const handleFetch = async () => {
     try {
       // switch to getByID after API fix
-      const res = await fetch(import.meta.env.API_URL + "/products");
+      const res = await fetch(import.meta.env.VITE_API_URL + "/products");
       const data = await res.json();
       const found = data.filter(
         (item: { _id: string | undefined }) => item._id == id
