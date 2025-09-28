@@ -81,7 +81,7 @@ function Details() {
         </section>
         <section className="mt-5  intro flex items-start justify-between gap-1">
           <div className="gallery mb-10">
-            <GalleryCarousel />
+            <GalleryCarousel media={data.media} />
           </div>
           <div className="info rounded-lg p-5">
             <div className="financial">
