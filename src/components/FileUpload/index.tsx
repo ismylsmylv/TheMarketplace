@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./style.scss";
+
 type FileItem = {
   id: string;
   file: File;
@@ -8,9 +9,17 @@ type FileItem = {
   preview?: string;
 };
 
-type Props = {};
+type Props = {
+  onFilesChange?: (files: File[]) => void;
+  maxFiles?: number;
+  maxFileSize?: number;
+};
 
-function FileUpload({}: Props) {
+function FileUpload({
+  onFilesChange,
+  maxFiles = 10,
+  maxFileSize = 10 * 1024 * 1024,
+}: Props) {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -34,7 +43,7 @@ function FileUpload({}: Props) {
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ];
-    return acceptedTypes.includes(file.type) && file.size <= 10 * 1024 * 1024; // 10MB limit
+    return acceptedTypes.includes(file.type) && file.size <= maxFileSize;
   };
 
   const createPreview = (file: File): Promise<string> => {
@@ -90,22 +99,56 @@ function FileUpload({}: Props) {
     }, 2000 + Math.random() * 3000);
   };
 
+  // Notify parent component when files change
+  useEffect(() => {
+    const completedFiles = files
+      .filter((f) => f.status === "complete")
+      .map((f) => f.file);
+    onFilesChange?.(completedFiles);
+  }, [files, onFilesChange]);
+
   const handleFiles = async (fileList: FileList) => {
-    const newFiles: FileItem[] = [];
+    const validFiles: File[] = [];
+    const rejectedFiles: string[] = [];
+
+    // Check file count limit
+    const totalFiles = files.length + fileList.length;
+    if (totalFiles > maxFiles) {
+      alert(
+        `Maximum ${maxFiles} files allowed. You're trying to upload ${totalFiles} files.`
+      );
+      return;
+    }
 
     for (let i = 0; i < fileList.length; i++) {
       const file = fileList[i];
       if (isAcceptedFile(file)) {
-        const preview = await createPreview(file);
-        const fileItem: FileItem = {
-          id: generateId(),
-          file,
-          progress: 0,
-          status: "uploading",
-          preview,
-        };
-        newFiles.push(fileItem);
+        validFiles.push(file);
+      } else {
+        rejectedFiles.push(
+          `${file.name} (${
+            file.size > maxFileSize ? "too large" : "invalid type"
+          })`
+        );
       }
+    }
+
+    if (rejectedFiles.length > 0) {
+      alert(`Some files were rejected:\n${rejectedFiles.join("\n")}`);
+    }
+
+    const newFiles: FileItem[] = [];
+
+    for (const file of validFiles) {
+      const preview = await createPreview(file);
+      const fileItem: FileItem = {
+        id: generateId(),
+        file,
+        progress: 0,
+        status: "uploading",
+        preview,
+      };
+      newFiles.push(fileItem);
     }
 
     setFiles((prev) => [...prev, ...newFiles]);
@@ -210,8 +253,10 @@ function FileUpload({}: Props) {
     }
   };
 
+  const completedFiles = files.filter((f) => f.status === "complete").length;
+
   return (
-    <div className=" Fileupload group  rounded-lg ">
+    <div className="Fileupload group rounded-lg">
       <div className="relative overflow-hidden transition-all duration-300">
         <div className="absolute -left-16 -top-16 h-32 w-32 rounded-full transition-all duration-500 group-hover:scale-150 group-hover:opacity-70"></div>
         <div className="absolute -right-16 -bottom-16 h-32 w-32 rounded-full transition-all duration-500 group-hover:scale-150 group-hover:opacity-70"></div>
@@ -219,12 +264,17 @@ function FileUpload({}: Props) {
         <div className="relative p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-stone-800 ">
+              <h3 className="text-lg font-semibold text-stone-800">
                 Upload Files
               </h3>
               <p className="text-sm text-gray-700">
                 Drag & drop your files here
               </p>
+              {files.length > 0 && (
+                <p className="text-xs text-blue-600 mt-1">
+                  {completedFiles} of {maxFiles} files uploaded
+                </p>
+              )}
             </div>
             <div className="rounded-lg bg-cyan-500/10 p-2 opacity-0">
               <svg
@@ -249,12 +299,14 @@ function FileUpload({}: Props) {
                 dragActive
                   ? "border-neutral-500/50 bg-neutral-500/10"
                   : "border-neutral-100 bg-neutral-50/50 group-hover/dropzone:border-cyan-500/50"
+              } ${
+                files.length >= maxFiles ? "opacity-50 cursor-not-allowed" : ""
               }`}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
               onDrop={handleDrop}
-              onClick={openFileDialog}
+              onClick={files.length >= maxFiles ? undefined : openFileDialog}
             >
               <input
                 ref={fileInputRef}
@@ -263,6 +315,7 @@ function FileUpload({}: Props) {
                 multiple
                 accept="image/*,video/*,.pdf,.doc,.docx"
                 onChange={handleInputChange}
+                disabled={files.length >= maxFiles}
               />
               <div className="space-y-6 text-center">
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gray-200">
@@ -283,14 +336,19 @@ function FileUpload({}: Props) {
 
                 <div className="space-y-2">
                   <p className="text-base font-medium text-gray-700">
-                    {dragActive
+                    {files.length >= maxFiles
+                      ? "Maximum files reached"
+                      : dragActive
                       ? "Drop files here"
                       : "Drop your files here or browse"}
                   </p>
                   <p className="text-sm text-gray-700">
-                    Support files: Images, Videos
+                    Support files: Images, Videos, PDF, Word
                   </p>
-                  <p className="text-xs text-gray-700">Max file size: 10MB</p>
+                  <p className="text-xs text-gray-700">
+                    Max file size: {formatFileSize(maxFileSize)} • Max{" "}
+                    {maxFiles} files
+                  </p>
                 </div>
               </div>
             </div>
@@ -337,7 +395,7 @@ function FileUpload({}: Props) {
                         </div>
                       )}
                       <div>
-                        <p className="font-medium  truncate max-w-[200px]">
+                        <p className="font-medium truncate max-w-[200px]">
                           {fileItem.file.name}
                         </p>
                         <p className="text-xs text-slate-400">
@@ -372,9 +430,29 @@ function FileUpload({}: Props) {
                           </span>
                         </>
                       )}
+                      {fileItem.status === "error" && (
+                        <>
+                          <svg
+                            className="h-5 w-5 text-red-500"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="text-sm font-medium text-red-500">
+                            Error
+                          </span>
+                        </>
+                      )}
                       <button
                         onClick={() => removeFile(fileItem.id)}
-                        className=" border-none text-slate-400 transition-colors hover:text-white"
+                        className="border-none text-slate-400 transition-colors hover:text-red-500"
                       >
                         <svg
                           className="h-5 w-5"
@@ -410,10 +488,12 @@ function FileUpload({}: Props) {
 
           <div className="mt-6 grid grid-cols-2 gap-4">
             <button
+              type="button"
               onClick={openFileDialog}
-              className="uploadBtn group/btn relative overflow-hidden rounded-lg  p-px font-medium text-white"
+              disabled={files.length >= maxFiles}
+              className="uploadBtn group/btn relative overflow-hidden rounded-lg p-px font-medium text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="relative flex items-center justify-center gap-2 rounded-lg px-4 py-2 ">
+              <span className="relative flex items-center justify-center gap-2 rounded-lg px-4 py-2">
                 Upload More
                 <svg
                   className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1"
@@ -431,6 +511,7 @@ function FileUpload({}: Props) {
               </span>
             </button>
             <button
+              type="button"
               onClick={clearAll}
               disabled={files.length === 0}
               className="flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2 font-medium text-white transition-colors hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"

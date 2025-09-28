@@ -38,34 +38,63 @@ function NewPoster() {
       delivery: false,
       barter: false,
       status: "active",
-      media: [],
+      media: [] as File[],
       createdAt: "",
-      offers: [],
       __v: 0,
     },
     onSubmit: async ({ value }) => {
-      // test post
-      fetch(import.meta.env.VITE_API_URL + "/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(value),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+      // Create FormData for file upload
+      const formData = new FormData();
+
+      // Append all form fields except media
+      Object.entries(value).forEach(([key, val]) => {
+        if (key === "media") {
+          // Handle media files separately
+          if (Array.isArray(val) && val.length > 0) {
+            val.forEach((file: File, index: number) => {
+              formData.append(`media`, file);
+            });
           }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        } else if (key === "ownerInfo") {
+          // Handle nested ownerInfo object
+          formData.append("ownerInfo", JSON.stringify(val));
+        } else if (typeof val === "object" && val !== null) {
+          // Handle other objects by stringifying
+          formData.append(key, JSON.stringify(val));
+        } else {
+          // Handle primitive values
+          formData.append(key, String(val));
+        }
+      });
+
+      try {
+        const response = await fetch(
+          import.meta.env.VITE_API_URL + "/products",
+          {
+            method: "POST",
+            body: formData, // Send FormData instead of JSON
+            // Don't set Content-Type header - let browser set it with boundary
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Success:", data);
+        // Reset form after successful submission
+        form.reset();
+      } catch (error) {
+        console.error("Error:", error);
+      }
     },
   });
+
+  // Function to handle media files from FileUpload component
+  const handleMediaFiles = (files: File[]) => {
+    form.setFieldValue("media", files);
+  };
 
   const renderField = (
     item:
@@ -153,490 +182,7 @@ function NewPoster() {
           min?: undefined;
           step?: undefined;
         },
-    field: FieldApi<
-      {
-        ownerInfo: { name: string; email: string; phone: string };
-        category: string;
-        subcategory: string;
-        title: string;
-        brand: string;
-        views: number;
-        condition: string;
-        price: number;
-        features: string;
-        description: string;
-        city: string;
-        delivery: boolean;
-        barter: boolean;
-        status: boolean;
-        media: never[];
-        createdAt: string;
-        offers: never[];
-        __v: number;
-      },
-      any,
-      any,
-      | FieldValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      ({
-        value,
-      }: {
-        value: any;
-        fieldApi: FieldApi<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any,
-          any
-        >;
-      }) => string | undefined,
-      | FieldAsyncValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FieldValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FieldAsyncValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FieldValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FieldAsyncValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FieldValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FieldAsyncValidateOrFn<
-          {
-            ownerInfo: { name: string; email: string; phone: string };
-            category: string;
-            subcategory: string;
-            title: string;
-            brand: string;
-            views: number;
-            condition: string;
-            price: number;
-            features: string;
-            description: string;
-            city: string;
-            delivery: boolean;
-            barter: boolean;
-            status: boolean;
-            media: never[];
-            createdAt: string;
-            offers: never[];
-            __v: number;
-          },
-          any,
-          any
-        >
-      | undefined,
-      | FormValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormAsyncValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormAsyncValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormAsyncValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormAsyncValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      | FormAsyncValidateOrFn<{
-          ownerInfo: { name: string; email: string; phone: string };
-          category: string;
-          subcategory: string;
-          title: string;
-          brand: string;
-          views: number;
-          condition: string;
-          price: number;
-          features: string;
-          description: string;
-          city: string;
-          delivery: boolean;
-          barter: boolean;
-          status: boolean;
-          media: never[];
-          createdAt: string;
-          offers: never[];
-          __v: number;
-        }>
-      | undefined,
-      unknown
-    >
+    field: FieldApi<any, any, any, any, any>
   ) => {
     const commonInputClasses =
       "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200";
@@ -743,7 +289,6 @@ function NewPoster() {
             }
             className={`${commonInputClasses} ${errorClasses}`}
             min={item.type === "number" ? item.min || 0 : undefined}
-            // max={item.type === "number" ? item.max : undefined}
             step={item.type === "number" ? item.step || 1 : undefined}
           />
         );
@@ -862,7 +407,7 @@ function NewPoster() {
               <h2 className="text-xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-300">
                 Photos & Media
               </h2>
-              <FileUpload />
+              <FileUpload onFilesChange={handleMediaFiles} />
               <p className="text-sm text-gray-500 mt-2">
                 Add up to 10 photos to showcase your item. First photo will be
                 the main image.
@@ -900,9 +445,10 @@ function NewPoster() {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg"
+                  disabled={form.state.isSubmitting}
+                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg disabled:cursor-not-allowed"
                 >
-                  Create Listing
+                  {form.state.isSubmitting ? "Creating..." : "Create Listing"}
                 </button>
               </div>
             </div>
