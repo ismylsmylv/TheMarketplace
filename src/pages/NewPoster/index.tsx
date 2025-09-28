@@ -76,9 +76,11 @@ function NewPoster() {
 
         const data = await response.json();
         console.log("Success:", data);
+        alert("success");
         // Reset form after successful submission
         form.reset();
       } catch (error) {
+        alert(`error ${error}`);
         console.error("Error:", error);
       }
     },
