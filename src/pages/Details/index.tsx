@@ -146,7 +146,7 @@ function Details() {
               {data.description}
             </div>
 
-            <div className="postDetails flex items-center justify-start gap-10">
+            <div className="postDetails flex items-center justify-start gap-10 flex-wrap">
               {detailsPosted.map((value) => (
                 <p key={value} className="font-light text-gray-700">
                   {value === "_id" ? `№${data._id}` : `${value} ${data[value]}`}
