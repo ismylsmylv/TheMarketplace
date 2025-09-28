@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ProductInterface } from "../../types/products";
 
 type Props = {
@@ -10,11 +10,19 @@ type Props = {
 };
 
 function Card({ data }: Props) {
-  const sampleVideo =
-    "https://v.etsystatic.com/video/upload/ac_none,du_15,q_auto:good/Chelsea_uvodne_video_no_text_hzcgdv_yabzxm.mp4";
+  // const sampleVideo =
+  //   "https://v.etsystatic.com/video/upload/ac_none,du_15,q_auto:good/Chelsea_uvodne_video_no_text_hzcgdv_yabzxm.mp4";
   // const sampleImage =
   //   "https://cdn.mos.cms.futurecdn.net/76BX7qw85vqQucCvUnTHHQ.jpg";
+  const noImage = "https://cdn-icons-png.flaticon.com/512/7156/7156838.png";
   const [hover, setHover] = useState(false);
+  const [image, setImage] = useState("");
+  const [video, setVideo] = useState("");
+  useEffect(() => {
+    data.media.find((obj) => obj.type == "video" && setVideo(obj.url));
+    data.media.find((obj) => obj.type !== "video" && setImage(obj.url));
+  }, []);
+
   return (
     <Link
       to={`/details/${data._id}`}
@@ -29,10 +37,10 @@ function Card({ data }: Props) {
           setHover(false);
         }}
       >
-        {hover ? (
+        {hover && video ? (
           <video
             height={400}
-            src={sampleVideo}
+            src={video}
             className="rounded-lg"
             autoPlay
             playsInline
@@ -41,7 +49,7 @@ function Card({ data }: Props) {
           ></video>
         ) : (
           <img
-            src={data.media[0]?.url}
+            src={image || noImage}
             alt="Cover image"
             className="rounded-lg "
           />

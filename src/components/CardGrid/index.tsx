@@ -41,7 +41,7 @@ function CardGrid({ heading }: Props) {
       )}
       <div className="grid ">
         {products?.map((item) => (
-          <Card data={item} />
+          <Card data={item} key={item._id} />
         ))}
       </div>
     </div>

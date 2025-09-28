@@ -1,21 +1,14 @@
+import { useForm } from "@tanstack/react-form";
 import type {
+  JSXElementConstructor,
   Key,
   ReactElement,
-  JSXElementConstructor,
   ReactNode,
   ReactPortal,
 } from "react";
 import FileUpload from "../../components/FileUpload";
 import { fields, headings } from "./mockdata";
 import "./style.scss";
-import {
-  FieldApi,
-  useForm,
-  type FieldAsyncValidateOrFn,
-  type FieldValidateOrFn,
-  type FormAsyncValidateOrFn,
-  type FormValidateOrFn,
-} from "@tanstack/react-form";
 
 function NewPoster() {
   const form = useForm({
@@ -51,7 +44,7 @@ function NewPoster() {
         if (key === "media") {
           // Handle media files separately
           if (Array.isArray(val) && val.length > 0) {
-            val.forEach((file: File, index: number) => {
+            val.forEach((file: File) => {
               formData.append(`media`, file);
             });
           }
@@ -182,7 +175,7 @@ function NewPoster() {
           min?: undefined;
           step?: undefined;
         },
-    field: FieldApi<any, any, any, any, any>
+    field: any
   ) => {
     const commonInputClasses =
       "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200";
