@@ -12,7 +12,7 @@ type GalleryCarouselProps = {
 
 function GalleryCarousel({ media }: GalleryCarouselProps) {
   const [active, setActive] = useState<Media>(
-    media[0] || {
+    media?.[0] || {
       _id: "",
       type: "",
       url: "",
