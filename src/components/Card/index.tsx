@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import type { ProductInterface } from "../../types/products";
 import "./style.scss";
+import { handleFavorite } from "../../functions/events/favorites";
 
 type Props = {
   data: ProductInterface;
@@ -63,7 +64,7 @@ function Card({ data }: Props) {
         className="fav  size-8 rounded-full flex  items-center justify-center absolute top-2 right-4 bg-sky-50"
         onClick={(e) => {
           e.stopPropagation();
-          console.log(data._id);
+          handleFavorite(data._id);
         }}
       >
         <FontAwesomeIcon icon={faHeart} />
