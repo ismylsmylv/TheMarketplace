@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import type { ProductInterface } from "../../types/products";
 import "./style.scss";
-import { handleFavorite } from "../../functions/events/favorites";
+import {
+  checkFavorite,
+  handleFavorite
+} from "../../functions/events/favorites";
 
 type Props = {
   data: ProductInterface;
@@ -17,6 +20,7 @@ function Card({ data }: Props) {
   //   "https://cdn.mos.cms.futurecdn.net/76BX7qw85vqQucCvUnTHHQ.jpg";
   const noImage = "https://cdn-icons-png.flaticon.com/512/7156/7156838.png";
   const [hover, setHover] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(checkFavorite(data._id));
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const navigate = useNavigate();
@@ -61,14 +65,18 @@ function Card({ data }: Props) {
         )}
       </div>
       <button
-        className="fav  size-8 rounded-full flex  items-center justify-center absolute top-2 right-4 bg-sky-50"
+        className={`${
+          !isFavorite && "addFav"
+        } size-8 rounded-full flex  items-center justify-center absolute top-2 right-4 bg-sky-50`}
         onClick={(e) => {
           e.stopPropagation();
           handleFavorite(data._id);
+          setIsFavorite(!isFavorite);
         }}
       >
-        <FontAwesomeIcon icon={faHeart} />
+        <FontAwesomeIcon icon={faHeart} color={isFavorite ? "red" : "black"} />
       </button>
+
       <div className="infos py-3 ">
         <p className="name line-clamp-1">{data.title}</p>
         {/* need a function to make date readable */}

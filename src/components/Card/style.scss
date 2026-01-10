@@ -14,13 +14,13 @@
         }
     }
 
-    .fav {
+    .addFav {
         transform: translateY(-150%);
         transition: 150ms ease-in-out;
     }
 
     &:hover {
-        .fav {
+        .addFav {
             display: flex;
             transform: translateY(0);
         }
