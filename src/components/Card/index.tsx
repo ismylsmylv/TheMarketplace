@@ -8,6 +8,7 @@ import {
   checkFavorite,
   handleFavorite
 } from "../../functions/events/favorites";
+import { formatRelativeDate } from "../../utils/ui";
 
 type Props = {
   data: ProductInterface;
@@ -81,7 +82,7 @@ function Card({ data }: Props) {
         <p className="name line-clamp-1">{data.title}</p>
         {/* need a function to make date readable */}
         <p className="date text-xs mt-2">
-          {data.city}, {data.createdAt}
+          {data.city}, {formatRelativeDate(data.createdAt)}
         </p>
         <p className="delivery text-xs mt-2">{data.delivery}</p>
 
